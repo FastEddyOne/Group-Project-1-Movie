@@ -45,21 +45,13 @@ fetch('https://juanroldan1989-moviequotes-v1.p.rapidapi.com/api/v1/quotes?actor=
 	.catch(err => console.error(err));
 
 
- var searchList = document.getElementById("search-list")   
- var searchHistory = [];
+ $(".submit").on("click", function() {
+     var = value = $(this).siblings("#search-list").val();
+     var searchedMovies = $(this).parent().attr("id");
+     localStorage.setItem(searchedMovies, value);
+ })
 
- function getItems() {
-     var searchList = JSON.parse(localStorage.getItem("searchHistory"));
-     if (searchList !== null) {
-         searchHistory = searchList;
-     };
-     for (i=0; i<searchHistory.length; i++) {
-         if (i == 10) {
-             break;
-         }
-
-     }
- }
+ $("#search-list").val(localStorage.getItem("search-list"));
 
 //if(localStorage["searchHistory"]) {
   //  searchHistory = JSON.parse(locatStorage['searchHistory']);
