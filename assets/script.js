@@ -45,25 +45,28 @@ fetch('https://juanroldan1989-moviequotes-v1.p.rapidapi.com/api/v1/quotes?actor=
 	.catch(err => console.error(err));
 
 
- $(".submit").on("click", function() {
-     var value = $(this).siblings("#search-list").val();
-     var userSearch = $(this).parent().attr("id");
-     localStorage.setItem(userSearch, value);
- })
+ 
+//$(".submit").on("click", function() {
+//     var value = $(this).siblings("#search-list").val();
+//     var searchedMovies= $(this).parent().attr("id");
+//     localStorage.setItem(searchedMovies, value);
+// })
 
- $("#search-list").val(localStorage.getItem("search-list"));
+// $("#search-list #searched-Movies").val(localStorage.getItem("search-list"));
 
-//if(localStorage["searchHistory"]) {
-  //  searchHistory = JSON.parse(locatStorage['searchHistory']);
-    //console.log(searchHistory);
-//}
-//if(searchHistory.indexOf(search) == -1) {
-  //  searchHistory.unshift(search);
-    //if(searchHistory.length > 10) {
-//        searchHistory.pop();
-//    }
-//    localStorage['searchHistory'] = JSON.stringify(searchHistory);
-//}
+var searchHistory = [];
+
+if(localStorage["searchHistory"]) {
+  searchHistory = JSON.parse(locatStorage['searchHistory']);
+   console.log(searchHistory);
+}
+if(searchHistory.indexOf(search) == -1) {
+    searchHistory.unshift(search);
+if(searchHistory.length > 10) {
+        searchHistory.pop();
+    }
+    localStorage['searchHistory'] = JSON.stringify(searchHistory);
+}
 //$(".submit").on("click", function(){
     
 //} )
