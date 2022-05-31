@@ -46,9 +46,9 @@ fetch('https://juanroldan1989-moviequotes-v1.p.rapidapi.com/api/v1/quotes?actor=
 
 
  $(".submit").on("click", function() {
-     var = value = $(this).siblings("#search-list").val();
-     var searchedMovies = $(this).parent().attr("id");
-     localStorage.setItem(searchedMovies, value);
+     var value = $(this).siblings("#search-list").val();
+     var userSearch = $(this).parent().attr("id");
+     localStorage.setItem(userSearch, value);
  })
 
  $("#search-list").val(localStorage.getItem("search-list"));
