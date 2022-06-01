@@ -1,6 +1,6 @@
 
 
-//Variable Placeholders
+/*//Variable Placeholders
 var userSearch = userSearchInput //Search Value Placeholder
 var movieTitle = results.name //This comes from watchmode
 var movieRating = results.user_rating //This comes from watchmode
@@ -42,7 +42,16 @@ const options = {
 fetch('https://juanroldan1989-moviequotes-v1.p.rapidapi.com/api/v1/quotes?actor=Al%20Pacino', options)
 	.then(response => response.json())
 	.then(response => console.log(response))
-	.catch(err => console.error(err));
+	.catch(err => console.error(err)); */
+
+
+let url = 'https://api.watchmode.com//v1/title/345534/details/?apiKey=R4p1DztdqOo4OnAVqProfjk203wluPqWA2esGkj0';
+    
+fetch(url, { method: 'Get' })
+     .then((res) => res.json())
+     .then((json) => {
+        console.log(json);
+    });    
 
 
  
@@ -56,19 +65,34 @@ fetch('https://juanroldan1989-moviequotes-v1.p.rapidapi.com/api/v1/quotes?actor=
 
 var searchHistory = [];
 
-if(localStorage["searchHistory"]) {
-  searchHistory = JSON.parse(localStorage['searchHistory']);
-   console.log(searchHistory);
-}
-if(searchHistory.indexOf(search) == -1) {
-    searchHistory.unshift(search);
-if(searchHistory.length > 10) {
-        searchHistory.pop();
+function getItems() {
+    userSearch = JSON.parse(localStorage.getItem("searchHistory"));
+    if (userSearch !== null) {
+        searchHistory = userSearch;
+    };
+    for (i = 0; i < searchHistory.length; i++) {
+        if (i == 10) {
+            break;
+        }
+
     }
-    localStorage['searchHistory'] = JSON.stringify(searchHistory);
 }
+
+//if(localStorage["searchHistory"]) {
+//  searchHistory = JSON.parse(localStorage['searchHistory']);
+//   console.log(searchHistory);
+//}
+//if(searchHistory.indexOf(search) == -1) {
+//    searchHistory.unshift(search);
+//if(searchHistory.length > 10) {
+//        searchHistory.pop();
+//    }
+//    localStorage['searchHistory'] = JSON.stringify(searchHistory);
+//}
 //$(".submit").on("click", function(){
     
 //} )
 
 // $("#search-list").val(localStorage.getItem("search-list"));   
+
+
