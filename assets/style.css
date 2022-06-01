@@ -1,10 +1,20 @@
+:root {
+    --darkblue: #394a51;
+    --mintgreen: #7fa99b;
+    --beachtan: #fbf2d5;
+    --sunflower: #fdc57b;
+
+}
+
 /* * {
     border-style: dotted;
 } */
 
+
+
 body {
-    background-color: lightgray;
-    color: black;
+    background-color: var(--darkblue);
+    color: var(--beachtan);
     margin-left: 10px;
     font-family: 'Courier New', Courier, monospace;
 }
