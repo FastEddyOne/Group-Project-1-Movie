@@ -19,7 +19,7 @@ fetch('https://api.watchmode.com/v1/autocomplete-search/?apiKey=R4p1DztdqOo4OnAV
 document.getElementById('search_field').value = ''; //Placeholder for search field
 
 function userSearch() {
-
+document.getElementById('search_button').addEventListener("click",);
 };
 
 function startSearch() {
@@ -57,7 +57,7 @@ fetch('https://juanroldan1989-moviequotes-v1.p.rapidapi.com/api/v1/quotes?actor=
 var searchHistory = [];
 
 if(localStorage["searchHistory"]) {
-  searchHistory = JSON.parse(locatStorage['searchHistory']);
+  searchHistory = JSON.parse(localStorage['searchHistory']);
    console.log(searchHistory);
 }
 if(searchHistory.indexOf(search) == -1) {
