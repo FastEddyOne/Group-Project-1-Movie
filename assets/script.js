@@ -1,3 +1,5 @@
+
+
 //Variable Placeholders
 var userSearch = userSearchInput //Search Value Placeholder
 var movieTitle = results.name //This comes from watchmode
@@ -41,4 +43,32 @@ fetch('https://juanroldan1989-moviequotes-v1.p.rapidapi.com/api/v1/quotes?actor=
 	.then(response => response.json())
 	.then(response => console.log(response))
 	.catch(err => console.error(err));
+
+
+ 
+//$(".submit").on("click", function() {
+//     var value = $(this).siblings("#search-list").val();
+//     var searchedMovies= $(this).parent().attr("id");
+//     localStorage.setItem(searchedMovies, value);
+// })
+
+// $("#search-list #searched-Movies").val(localStorage.getItem("search-list"));
+
+var searchHistory = [];
+
+if(localStorage["searchHistory"]) {
+  searchHistory = JSON.parse(locatStorage['searchHistory']);
+   console.log(searchHistory);
+}
+if(searchHistory.indexOf(search) == -1) {
+    searchHistory.unshift(search);
+if(searchHistory.length > 10) {
+        searchHistory.pop();
+    }
+    localStorage['searchHistory'] = JSON.stringify(searchHistory);
+}
+//$(".submit").on("click", function(){
     
+//} )
+
+// $("#search-list").val(localStorage.getItem("search-list"));   
