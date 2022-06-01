@@ -1,5 +1,5 @@
 //Variable Placeholders
-var userSearch = "Breaking Bad"
+var userSearch = "Star Wars"
 /*var movieTitle = results.name //This comes from watchmode
 var movieRating = results.user_rating //This comes from watchmode
 var movieSummary = results.plot_overview //This comes from Watchmode
@@ -28,21 +28,20 @@ async function doAsyncTask() {
 
 doAsyncTask();
 
-//Movie Quotes API --- Temporarily commented out because it requires subscription, waiting for response wit auth token otherwise we get a bad credentials error.
-/*const options = {
+//Movie Quotes API --- Got API Key, and response working. Still need to pass in userSearch for movie title
+const options = {
+  movie: userSearch,
 	method: 'GET',
 	headers: {
-		Authorization: 'Token token=yd8WzkWNEEzGtqMSgiZBrwtt',
-		'X-RapidAPI-Host': 'juanroldan1989-moviequotes-v1.p.rapidapi.com',
-		'X-RapidAPI-Key': '6f6dc5803cmsh078b476bc8fb6c4p10615ajsnd51b1ddcc2c7'
+		Authorization: 'Token token=5HRYr2S7rgwZVzqbxM5uNAtt',
 	}
 };
 
-fetch('https://juanroldan1989-moviequotes-v1.p.rapidapi.com/api/v1/quotes?actor=Al%20Pacino', options)
+fetch('https://movie-quotes-app.herokuapp.com/api/v1/quotes?movie=', options)
 	.then(response => response.json())
 	.then(response => console.log(response))
 	.catch(err => console.error(err));
-*/
+
   
 /*This function is just a test to see if the input has changed on the search form -Eddie */
 function searchInputChanged() {
