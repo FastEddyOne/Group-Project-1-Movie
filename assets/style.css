@@ -1,0 +1,21 @@
+/* * {
+    border-style: dotted;
+} */
+
+body {
+    background-color: lightgray;
+    color: black;
+    margin-left: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    text-align: center;
+}
+
+.grid-container {
+    padding-left: 0px;
+    margin-left: 0px;
+    padding-top: 5px;
+
+}
