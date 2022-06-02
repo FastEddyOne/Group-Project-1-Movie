@@ -52,6 +52,14 @@ h1 {
     width: 500px;
 }
 
+.main-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: auto;
+    height: 200px;
+}
+
 .field-and-button {
     width: 400px !important;
 }
@@ -66,4 +74,13 @@ h1 {
     color: var(--sunflower);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 15px;
+}
+
+#movie-title {
+    color: var(--sunflower);
+}
+
+#movie-poster {
+    margin-right: 35px;
+    width: 150px;
 }
