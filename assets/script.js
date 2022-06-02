@@ -60,16 +60,10 @@ function searchInputChanged() {
   /*WE NEED TO FIGURE OUT HOW TO PULL IN THE USER INPUTTED TEXT AND PASS IT INTO THE GLOBAL VARIABLE "userSearch" -Eddie */
 
 /* local storage */
- var searchHistory = [];
+$('.submit').on('click', function() {
+    var value = $(this).siblings(".searchHistory")
+    var movies = $(this).parent().attr('id');
+    localStorage.setItem(movies, value);
+})
 
- function getItems() {
-     var storedSearch = JSON.parse(localStorage.getItem('searchHistory'));
-     if (storedSearch !== null) {
-         searchHistory = storedSearch;
-     };
-     for (i = 0; i < searchHistory.length; i++) {
-         if (i == 10) {
-             break;
-         }
-     }
- }
+$('#search-list').val(localStorage.getItem('searchHistory'));
