@@ -79,6 +79,8 @@ function getItems() {
         if (i == 10) {
             break;
         }
+    }
+}
 
 if(localStorage["searchHistory"]) {
   searchHistory = JSON.parse(locatStorage['searchHistory']);
@@ -106,10 +108,7 @@ if(searchHistory.length > 10) {
     
 //} )
 
-<<<<<<< HEAD
 // $("#search-list").val(localStorage.getItem("search-list"));   
 
 
-=======
 // $("#search-list").val(localStorage.getItem("search-list"));
->>>>>>> 0a6cab88ad433a607b53b3fa6e341fcbbff483c9
