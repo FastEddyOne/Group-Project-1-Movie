@@ -1,45 +1,43 @@
-
-
-/*//Variable Placeholders
-var userSearch = userSearchInput //Search Value Placeholder
-var movieTitle = results.name //This comes from watchmode
+//Variable Placeholders
+var userSearch = "Star Wars"
+/*var movieTitle = results.name //This comes from watchmode
 var movieRating = results.user_rating //This comes from watchmode
 var movieSummary = results.plot_overview //This comes from Watchmode
 var moviePoster = results.image_url //This comes from watchmode
 var whereToWatch = results.sources //This comes from Watchmode
 var movieTrailer = results.trailer //This comes from Watchmode
 var movieQuote = REPLACEME //This comes from MovieQuotesAPI
+*/
 
-//Watchmode API
-fetch('https://api.watchmode.com/v1/autocomplete-search/?apiKey=R4p1DztdqOo4OnAVqProfjk203wluPqWA2esGkj0' + '&search_value=Breaking%20bad&search_type=1') //This is just a default search from Watchmode Autocomplete search using our API Key - search_type=1 will return both tittles and people in the results
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
+/*//Watchmode API Refactored
+/*Testing Refactored API Functions -Eddie*/
+async function doAsyncTask() {
+  const url = (
+    'https://api.watchmode.com/v1/autocomplete-search/?apiKey=R4p1DztdqOo4OnAVqProfjk203wluPqWA2esGkj0&' +
+    new URLSearchParams({ 
+      search_value: userSearch, 
+      search_type: 1 }).toString()
+  );
 
-document.getElementById('search_field').value = ''; //Placeholder for search field
+  const result = await fetch(url)
+    .then(response => response.json());
 
-function userSearch() {
-document.getElementById('search_button').addEventListener("click",);
-};
+  console.log('Fetched from: ' + url);
+  console.log(result);
+}
 
-function startSearch() {
-    document.getElementById('search_button').addEventListener('click')
-    userSearchInput(document.getElementById('search_field').value)
-    console.log(userSearch)
-}   //This is just a test/placeholder function experimenting with logic
+doAsyncTask();
 
-
-//Movie Quotes API 
+//Movie Quotes API --- Got API Key, and response working. Still need to pass in userSearch for movie title
 const options = {
+  movie: userSearch,
 	method: 'GET',
 	headers: {
-		Authorization: 'Token token=yd8WzkWNEEzGtqMSgiZBrwtt',
-		'X-RapidAPI-Host': 'juanroldan1989-moviequotes-v1.p.rapidapi.com',
-		'X-RapidAPI-Key': '6f6dc5803cmsh078b476bc8fb6c4p10615ajsnd51b1ddcc2c7'
+		Authorization: 'Token token=5HRYr2S7rgwZVzqbxM5uNAtt',
 	}
 };
 
-fetch('https://juanroldan1989-moviequotes-v1.p.rapidapi.com/api/v1/quotes?actor=Al%20Pacino', options)
+fetch('https://movie-quotes-app.herokuapp.com/api/v1/quotes?movie=', options)
 	.then(response => response.json())
 	.then(response => console.log(response))
 	.catch(err => console.error(err)); */
@@ -53,8 +51,15 @@ fetch(url, { method: 'Get' })
         console.log(json);
     });    
 
+  
+/*This function is just a test to see if the input has changed on the search form -Eddie */
+function searchInputChanged() {
+	console.log("searchInputChanged");
+  }
 
- 
+  /*WE NEED TO FIGURE OUT HOW TO PULL IN THE USER INPUTTED TEXT AND PASS IT INTO THE GLOBAL VARIABLE "userSearch" -Eddie */
+
+
 //$(".submit").on("click", function() {
 //     var value = $(this).siblings("#search-list").val();
 //     var searchedMovies= $(this).parent().attr("id");
@@ -75,6 +80,14 @@ function getItems() {
             break;
         }
 
+if(localStorage["searchHistory"]) {
+  searchHistory = JSON.parse(locatStorage['searchHistory']);
+   console.log(searchHistory);
+}
+if(searchHistory.indexOf(search_field.value) == -1) {
+    searchHistory.unshift(search);
+if(searchHistory.length > 10) {
+        searchHistory.pop();
     }
 }
 
@@ -93,6 +106,10 @@ function getItems() {
     
 //} )
 
+<<<<<<< HEAD
 // $("#search-list").val(localStorage.getItem("search-list"));   
 
 
+=======
+// $("#search-list").val(localStorage.getItem("search-list"));
+>>>>>>> 0a6cab88ad433a607b53b3fa6e341fcbbff483c9
