@@ -6,9 +6,9 @@
 
 }
 
-/* * {
+* {
     border-style: dotted;
-} */
+}
 
 
 
@@ -28,4 +28,23 @@ h1 {
     margin-left: 0px;
     padding-top: 5px;
 
+}
+
+.tobenamed {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: auto;
+}
+
+.left-side {
+    width: 500px;
+}
+
+.right-side {
+    width: 500px;
+}
+
+.field-and-button {
+    width: 500px !important;
 }
