@@ -12,6 +12,7 @@
   <body>
     <h1>🎥 Search for a movie or show! 🎥</h1>
 
+
     <div class="row tobenamed">
       <div class="left-side">
         <form>
@@ -20,6 +21,7 @@
               <div class="medium-6 cell field-and-button">
                 <label>
                   <input id="search_field" type="text" onchange="searchInputChanged()" placeholder="movie title">
+                <!--Added onchange to detect users typing, passes to script.js as a test -Eddie -->
                 </label>
                 <button id="search_button" class="submit success button">Search</button>
               </div>
@@ -57,7 +59,7 @@
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.12/what-input.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>    
     <script>
       $(document).foundation();
