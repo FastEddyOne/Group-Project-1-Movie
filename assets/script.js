@@ -5,6 +5,7 @@ var watchModeID = ""
 var searchList = document.getElementById('search-list')
 var movieQuote = document.getElementById('movie-quote')
 var movieTitle = document.getElementById('movie-title')
+var titleMovie = document.getElementById('title-movie')
 var movieRating = document.getElementById('ratings')
 var movieSummary = document.getElementById('movie-summary')
 var moviePoster = document.getElementById('movie-poster')
@@ -62,6 +63,7 @@ async function movieInfo() {
       //console.log(response)
       var watchModeItem = response
         movieTitle.innerHTML = watchModeItem.title //This comes from watchmode
+        titleMovie.innerHTML = watchModeItem.title
         movieRating.innerHTML = watchModeItem.user_rating //This comes from.user_rating //This comes from watchmode
         movieSummary.innerHTML = watchModeItem.plot_overview //This comes from Watchmode
         moviePoster.src = watchModeItem.poster //This comes from watchmode
