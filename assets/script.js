@@ -1,6 +1,7 @@
 //Variable Placeholders
 var userSearch = ""
 var searchHistory = [];
+var watchModeID = ""
 
 /*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
 
@@ -36,12 +37,14 @@ async function doAsyncTask() {
       if (response.results.length > 0) {
         var item = response.results[0]
         movieTitle = item.name //This comes from watchmode
+        watchModeID = item.id //This comes from watchmode
         movieRating = item.user_rating //This comes from watchmode
         movieSummary = item.plot_overview //This comes from Watchmode
         moviePoster = item.image_url //This comes from watchmode
         whereToWatch = item.sources //This comes from Watchmode
         movieTrailer = item.trailer //This comes from Watchmode
         console.log(item)
+        console.log(item.id)
       }
   })
   console.log('Fetched from: ' + url);
