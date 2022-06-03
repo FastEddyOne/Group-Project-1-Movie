@@ -1,9 +1,9 @@
-//Variable Placeholders
 var userSearch = ""
 var searchHistory = []
 var watchModeID = ""
 var searchList = document.getElementById('search-list')
 var movieQuote = document.getElementById('movie-quote')
+var movieQuotePerson = document.getElementById('movie-quote-person')
 var movieTitle = document.getElementById('movie-title')
 var titleMovie = document.getElementById('title-movie')
 var movieRating = document.getElementById('ratings')
@@ -13,14 +13,15 @@ var movieAvailability = document.getElementById('movie-availability')
 var embeddedTrailer = document.getElementById('embedded-trailer')
 /*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
 
+//Get User Input
 document.getElementById('search_button').addEventListener('click', userInputComplete)
 function userInputComplete(e) {
   e.preventDefault()
-  userSearch = document.getElementById('search_field').value
-  console.log(userSearch)
+    userSearch = document.getElementById('search_field').value
+      console.log(userSearch)
   if (userSearch.length > 0) {
     saveSearchHistory()
-    doAsyncTask()
+    callWatchMode()
   }
   else {
     console.log("No User Input")
@@ -28,8 +29,9 @@ function userInputComplete(e) {
 }
 
 
-/*//Watchmode API Refactored*/
-async function doAsyncTask() {
+/*API Calls*/
+//WatchMode API Call
+async function callWatchMode() {
   const url = (
     'https://api.watchmode.com/v1/autocomplete-search/?apiKey=R4p1DztdqOo4OnAVqProfjk203wluPqWA2esGkj0&' +
     new URLSearchParams({ 
@@ -43,17 +45,15 @@ async function doAsyncTask() {
       console.log(response)
       if (response.results.length > 0) {
         var item = response.results[0]
-        watchModeID = item.id //This comes from watchmode
-        console.log(item)
-        console.log(item.id)
-        movieInfo()
+          watchModeID = item.id //This comes from Watchmode
+            console.log(item)
+            console.log(item.id)
+        watchModeTitleInfoCall()
       }
   })
-  console.log('Fetched from: ' + url);
-  //console.log(result);
 }
 
-async function movieInfo() {
+async function watchModeTitleInfoCall() {
   const url = (
     'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=R4p1DztdqOo4OnAVqProfjk203wluPqWA2esGkj0'
     );
@@ -63,7 +63,7 @@ async function movieInfo() {
     .then(function(response) {
       //console.log(response)
       var watchModeItem = response
-        movieTitle.innerHTML = watchModeItem.title //This comes from watchmode
+        movieTitle.innerHTML = watchModeItem.title 
         titleMovie.innerHTML = watchModeItem.title
         movieRating.innerHTML = watchModeItem.user_rating //This comes from.user_rating //This comes from watchmode
         movieSummary.innerHTML = watchModeItem.plot_overview //This comes from Watchmode
@@ -72,15 +72,14 @@ async function movieInfo() {
         //whereToWatchLink= watchModeItem.sources.web_url //This comes from Watchmode
         embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/') //This comes from Watchmode, turns the link to video to embed
         console.log(watchModeItem);
+        getMovieQuoteCall()
       }
   )
-  console.log('Fetched from: ' + url);
-  
 }
 
-//doAsyncTask(); Triggers api on page load 
-//Movie Quotes API --- Got API Key, and response working. Still need to pass in userSearch for movie title
-/*const options = {
+//MovieQuote API Call
+async function getMovieQuoteCall() {
+const options = {
   movie: userSearch,
 	method: 'GET',
 	headers: {
@@ -88,29 +87,20 @@ async function movieInfo() {
 	}
 };
 
-fetch('https://movie-quotes-app.herokuapp.com/api/v1/quotes?movie=', options)
+fetch('https://moviequotes.rocks/api/v1/quotes', options)
 	.then(response => response.json())
   .then(function(response) {
-      console.log(response)
-      if (response.results.length > 0) {
-        var item = response.results[0]
-        movieTitle = item.name //This comes from watchmode
-        movieRating = item.user_rating //This comes from watchmode
-        movieSummary = item.plot_overview //This comes from Watchmode
-        moviePoster = item.image_url //This comes from watchmode
-        whereToWatch = item.sources //This comes from Watchmode
-        movieTrailer = item.trailer //This comes from Watchmode
-        console.log(item)
+    var quoteResponseItem = (response)    
+        movieQuote.innerHTML = quoteResponseItem.content
+        movieQuotePerson.innerHTML = quoteResponseItem.character
+          console.log(quoteResponseItem)
       }
-  })
-  
-	.catch(err => console.error(err));
-*/
-  
+  )
 
-function searchInputChanged() {
-	console.log("searchInputChanged");
-  }
+  .catch(err => console.error(err));
+}
+
+//Local Storage Stuff
 
 //$(".submit").on("click", function() {
 //     var value = $(this).siblings("#search-list").val();
