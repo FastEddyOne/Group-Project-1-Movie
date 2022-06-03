@@ -10,17 +10,21 @@
   </head>
 
   <body>
-    <h1>Search for a movie or show!</h1>
+    <h1>🎥 Search for a movie or show! 🎥</h1>
 
-    <form>
-        <div class="grid-container">
-          <div class="grid-x grid-padding-x">
-            <div class="medium-4 cell">
-              <label>
-                <input id="search_field" type="text" onchange="searchInputChanged()" placeholder="movie title">
-<!--Added onchange to detect users typing, passes to script.js as a test -Eddie -->
-              </label>
-              <button id ="search_button" class="submit success button">Search</button>
+
+    <div class="row tobenamed">
+      <div class="left-side">
+        <form>
+          <div class="grid-container">
+            <div class="grid-x grid-padding-x">
+              <div class="medium-6 cell field-and-button">
+                <label>
+                  <input id="search_field" type="text" onchange="searchInputChanged()" placeholder="movie title">
+                <!--Added onchange to detect users typing, passes to script.js as a test -Eddie -->
+                </label>
+                <button id="search_button" class="submit success button">Search</button>
+              </div>
             </div>
           </div>
         </div>
@@ -32,23 +36,37 @@
               <div class="col-md-6 search-group"></div>
         <!-- Empty div for local storage list -->
     </section>
+        </form>
 
-    <section>
-        <h3><span id="movie-title"></span></h3>
-        <p>Ratings: <span id="ratings"></span></p>
-        <p>Summary: <span id="movie-summary"></span></p>
-        <a href=""></a>
-        <p>Where to find <span id="movie-title"></span>:</p>
-        <div><span id="movie-availability"></span></div>
-        <!-- All spans will be pulled directly from Watchmode or other apis -->
-    </section>
+        <section>
+          <h3 id="searched-Movies">Search History</h3>
+          <div id="search-list"></div>
+          <!-- Empty div for local storage list -->
+        </section>
 
-    <section>
-        <p>A wonderful movie quote:</p>
-        <span id="movie-quote"></span>
-        <!-- If movie quote does not exist, create conditional statement -->
-    </section>
+        <section>
+          <p>A wonderful movie quote:</p>
+          <span id="movie-quote"></span>
+          <!-- If movie quote does not exist, create conditional statement -->
+        </section>
+      </div>
 
+      <div class="right-side">
+        <section class="main-info">
+          <div class="movie-info">
+            <h3><span id="movie-title"></span></h3>
+            <p>Ratings: <span id="ratings"></span></p>
+            <p>Summary: <span id="movie-summary"></span></p>
+          </div>
+          <img id="movie-poster" src="" alt = "Movie Poster Image"></img>
+          <!-- All spans will be pulled directly from Watchmode or other apis -->
+        </section>
+        <section class="avail-info">
+          <p>Where to find <span id="title-movie"></span> :</p>
+          <div><span id="movie-availability"></span></div>
+        </section>
+      </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.12/what-input.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>    

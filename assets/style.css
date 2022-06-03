@@ -1,21 +1,97 @@
+:root {
+    --darkblue: #394a51;
+    --mintgreen: #7fa99b;
+    --beachtan: #fbf2d5;
+    --sunflower: #fdc57b;
+
+}
+
 /* * {
     border-style: dotted;
 } */
 
+
+
 body {
-    background-color: lightgray;
-    color: black;
-    margin-left: 10px;
+    background-color: var(--darkblue);
+    color: var(--beachtan);
     font-family: 'Courier New', Courier, monospace;
 }
 
 h1 {
     text-align: center;
+    font-weight: bold;
+    color: var(--beachtan);
+    padding-bottom: 25px;
+    padding-top: 10px;
+    margin-left: 0px;
+    background-color: var(--mintgreen);
 }
 
 .grid-container {
     padding-left: 0px;
     margin-left: 0px;
     padding-top: 5px;
+
+}
+
+.tobenamed {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: auto;
+    margin-left: 15px;
+    padding-top: 10px;
+}
+
+.left-side {
+    width: 500px;
+}
+
+.right-side {
+    width: 800px;
+}
+
+.main-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: auto;
+    height: auto;
+}
+
+.avail-info {
+    margin-top: 25px;
+}
+
+.field-and-button {
+    width: 400px !important;
+}
+
+#search-list {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: var(--mintgreen);
+}
+
+#movie-quote {
+    color: var(--sunflower);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+}
+
+#movie-title {
+    color: var(--sunflower);
+}
+
+#title-movie {
+    color: var(--sunflower);
+}
+
+#movie-poster {
+    margin-right: 35px;
+    margin-left: 20px;
+    width: 300px;
+    height: 250px;
 
 }
