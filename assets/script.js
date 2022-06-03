@@ -101,5 +101,46 @@ fetch('https://moviequotes.rocks/api/v1/quotes', options)
 //Local Storage Stuff
 
   /*WE NEED TO FIGURE OUT HOW TO PULL IN THE USER INPUTTED TEXT AND PASS IT INTO THE GLOBAL VARIABLE "userSearch" -Eddie */
+//$(".submit").on("click", function() {
+//     var value = $(this).siblings("#search-list").val();
+//     var searchedMovies= $(this).parent().attr("id");
+//     localStorage.setItem(searchedMovies, value);
+// })
 
+// $("#search-list #searched-Movies").val(localStorage.getItem("search-list"));
+
+function saveSearchHistory() {
+
+
+  if(localStorage["searchHistory"]) {
+    searchHistory = JSON.parse(localStorage['searchHistory']);
+     console.log(searchHistory);
+  }
+  if(searchHistory.indexOf(search_field.value) == -1) {
+      searchHistory.unshift(userSearch);
+  if(searchHistory.length > 10) {
+          searchHistory.pop();
+      }
+      localStorage['searchHistory'] = JSON.stringify(searchHistory);
+  }
+
+  } 
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    var movieItem = $('input[name="search_filed"]').val();
+    if(!movieItem) {
+      console.log('Nothing entered in search bar');
+      return;
+    }
+    var movieListEl = $('<li>');
+    movieListEl.text(movieItem);
+
+  }
+  
+  //$(".submit").on("click", function(){
+      
+  //} )
+  
+  // $("#search-list").val(localStorage.getItem("search-list"));
 
