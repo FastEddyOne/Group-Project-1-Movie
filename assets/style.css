@@ -82,10 +82,13 @@ h1 {
 
 #movie-title {
     color: var(--sunflower);
+    font-weight: bolder;
 }
 
 #title-movie {
     color: var(--sunflower);
+    font-weight: bolder;
+    font-size: larger;
 }
 
 #movie-poster {
