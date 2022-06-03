@@ -115,36 +115,4 @@ function searchInputChanged() {
   /*WE NEED TO FIGURE OUT HOW TO PULL IN THE USER INPUTTED TEXT AND PASS IT INTO THE GLOBAL VARIABLE "userSearch" -Eddie */
 
 /* local storage */
-$(".submit").on("click", function() {
-    var value = $(this).siblings("search_field").val();
-    var movies = $(this).parent().attr("id");
-    localStorage.setItem(movies, value);
-})
-//$(".submit").on("click", function() {
-//     var value = $(this).siblings("#search-list").val();
-//     var searchedMovies= $(this).parent().attr("id");
-//     localStorage.setItem(searchedMovies, value);
-// })
 
-// $("#search-list #searched-Movies").val(localStorage.getItem("search-list"));
-
-function saveSearchHistory() {
-
-
-if(localStorage["searchHistory"]) {
-  searchHistory = JSON.parse(localStorage['searchHistory']);
-   console.log(searchHistory);
-}
-if(searchHistory.indexOf(search_field.value) == -1) {
-    searchHistory.unshift(userSearch);
-if(searchHistory.length > 10) {
-        searchHistory.pop();
-    }
-    localStorage['searchHistory'] = JSON.stringify(searchHistory);
-}
-}
-//$(".submit").on("click", function(){
-    
-//} )
-
-// $("#search-list").val(localStorage.getItem("search-list"));
