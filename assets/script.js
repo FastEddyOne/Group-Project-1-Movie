@@ -1,13 +1,23 @@
 //Variable Placeholders
-var userSearch = "Star Wars"
-/*var movieTitle = results.name //This comes from watchmode
-var movieRating = results.user_rating //This comes from watchmode
-var movieSummary = results.plot_overview //This comes from Watchmode
-var moviePoster = results.image_url //This comes from watchmode
-var whereToWatch = results.sources //This comes from Watchmode
-var movieTrailer = results.trailer //This comes from Watchmode
-var movieQuote = REPLACEME //This comes from MovieQuotesAPI
-*/
+var userSearch = ""
+var searchHistory = [];
+
+/*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
+
+document.getElementById('search_button').addEventListener('click', userInputComplete)
+function userInputComplete(e) {
+  e.preventDefault()
+  userSearch = document.getElementById('search_field').value
+  console.log(userSearch)
+  if (userSearch.length > 0) {
+    saveSearchHistory()
+    doAsyncTask()
+  }
+  else {
+    console.log("No User Input")
+  }
+}
+
 
 /*//Watchmode API Refactored
 /*Testing Refactored API Functions -Eddie*/
@@ -20,14 +30,25 @@ async function doAsyncTask() {
   );
 
   const result = await fetch(url)
-    .then(response => response.json());
-
+    .then(response => response.json())
+    .then(function(response) {
+      console.log(response)
+      if (response.results.length > 0) {
+        var item = response.results[0]
+        movieTitle = item.name //This comes from watchmode
+        movieRating = item.user_rating //This comes from watchmode
+        movieSummary = item.plot_overview //This comes from Watchmode
+        moviePoster = item.image_url //This comes from watchmode
+        whereToWatch = item.sources //This comes from Watchmode
+        movieTrailer = item.trailer //This comes from Watchmode
+        console.log(item)
+      }
+  })
   console.log('Fetched from: ' + url);
   console.log(result);
 }
 
-doAsyncTask();
-
+//doAsyncTask(); Triggers api on page load 
 //Movie Quotes API --- Got API Key, and response working. Still need to pass in userSearch for movie title
 const options = {
   movie: userSearch,
@@ -37,11 +58,24 @@ const options = {
 	}
 };
 
-fetch('https://movie-quotes-app.herokuapp.com/api/v1/quotes?movie=', options)
+/*fetch('https://movie-quotes-app.herokuapp.com/api/v1/quotes?movie=', options)
 	.then(response => response.json())
-	.then(response => console.log(response))
+  .then(function(response) {
+      console.log(response)
+      if (response.results.length > 0) {
+        var item = response.results[0]
+        movieTitle = item.name //This comes from watchmode
+        movieRating = item.user_rating //This comes from watchmode
+        movieSummary = item.plot_overview //This comes from Watchmode
+        moviePoster = item.image_url //This comes from watchmode
+        whereToWatch = item.sources //This comes from Watchmode
+        movieTrailer = item.trailer //This comes from Watchmode
+        console.log(item)
+      }
+  })
+  
 	.catch(err => console.error(err));
-
+/*
   
 /*This function is just a test to see if the input has changed on the search form -Eddie */
 function searchInputChanged() {
@@ -59,18 +93,20 @@ function searchInputChanged() {
 
 // $("#search-list #searched-Movies").val(localStorage.getItem("search-list"));
 
-var searchHistory = [];
+function saveSearchHistory() {
+
 
 if(localStorage["searchHistory"]) {
-  searchHistory = JSON.parse(locatStorage['searchHistory']);
+  searchHistory = JSON.parse(localStorage['searchHistory']);
    console.log(searchHistory);
 }
 if(searchHistory.indexOf(search_field.value) == -1) {
-    searchHistory.unshift(search);
+    searchHistory.unshift(userSearch);
 if(searchHistory.length > 10) {
         searchHistory.pop();
     }
     localStorage['searchHistory'] = JSON.stringify(searchHistory);
+}
 }
 //$(".submit").on("click", function(){
     
