@@ -18,7 +18,7 @@ function userInputComplete(e) {
   userSearch = document.getElementById('search_field').value
   console.log(userSearch)
   if (userSearch.length > 0) {
-    saveSearchHistory()
+    saveSearchHistory() . //not defined.  
     doAsyncTask()
   }
   else {
@@ -114,17 +114,4 @@ function searchInputChanged() {
 
   /*WE NEED TO FIGURE OUT HOW TO PULL IN THE USER INPUTTED TEXT AND PASS IT INTO THE GLOBAL VARIABLE "userSearch" -Eddie */
 
-/* local storage */
-function getItems() {
-    var storedMovies = JSON.parse(localStorage.getItem("searchHistory"));
-    if (storedMovies !== null) {
-        searchHistory = storedCities;
-    };
-     
-    for (i = 0; i < searchHistory.length; i++) {
-        if (i == 8) {
-            break;
-          }
-        
-    }
-};
+
