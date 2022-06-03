@@ -20,8 +20,7 @@
             <div class="grid-x grid-padding-x">
               <div class="medium-6 cell field-and-button">
                 <label>
-                  <input id="search_field" type="text" onchange="searchInputChanged()" placeholder="movie title">
-                <!--Added onchange to detect users typing, passes to script.js as a test -Eddie -->
+                  <input id="search_field" type="text" placeholder="movie title">
                 </label>
                 <button id="search_button" class="submit success button">Search</button>
               </div>
@@ -40,6 +39,7 @@
         <section>
           <p>A wonderful movie quote:</p>
           <span id="movie-quote"></span>
+          <div id="movie-quote-person"></div>
           <!-- If movie quote does not exist, create conditional statement -->
         </section>
       </div>
