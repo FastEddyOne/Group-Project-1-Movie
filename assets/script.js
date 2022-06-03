@@ -9,7 +9,7 @@ var movieRating = document.getElementById('ratings')
 var movieSummary = document.getElementById('movie-summary')
 var moviePoster = document.getElementById('movie-poster')
 var movieAvailability = document.getElementById('movie-availability')
-/*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
+var movieQuote = document.getElementById('movie-quote') //This comes from MovieQuotesAPI
 
 document.getElementById('search_button').addEventListener('click', userInputComplete)
 function userInputComplete(e) {
@@ -75,8 +75,7 @@ async function movieInfo() {
   console.log('Fetched from: ' + url);
   
 }
-
-//doAsyncTask(); Triggers api on page load 
+ 
 //Movie Quotes API --- Got API Key, and response working. Still need to pass in userSearch for movie title
 /*const options = {
   movie: userSearch,
