@@ -85,7 +85,7 @@ const options = {
 	}
 };
 
-fetch('https://movie-quotes-app.herokuapp.com/api/v1/quotes', options)
+fetch('https://moviequotes.rocks/api/v1/quotes', options)
 	.then(response => response.json())
   .then(function(response) {
     var quoteResponseItem = (response)    
