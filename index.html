@@ -50,14 +50,23 @@
             <h3><span id="movie-title"></span></h3>
             <p>Ratings: <span id="ratings"></span></p>
             <p>Summary: <span id="movie-summary"></span></p>
+            <p><button class="button" data-open="trailer-modal">Watch trailer</button></p>
           </div>
           <img id="movie-poster" src="" alt = "Movie Poster Image"></img>
           <!-- All spans will be pulled directly from Watchmode or other apis -->
         </section>
         <section class="avail-info">
-          <p>Where to find <span id="title-movie"></span> :</p>
+          <p>Where to find <span id="title-movie"></span>:</p>
           <div><span id="movie-availability"></span></div>
         </section>
+      </div>
+
+      <!-- Modal pop-up for the trailer -->
+      <div class="reveal" id="trailer-modal" data-reveal>
+        <iframe id="embedded-trailer" src="" frameborder="0" width="560" height="315"></iframe>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    
