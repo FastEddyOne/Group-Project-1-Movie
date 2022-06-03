@@ -62,11 +62,11 @@ function searchInputChanged() {
 var searchHistory = [];
 
 if(localStorage["searchHistory"]) {
-  searchHistory = JSON.parse(locatStorage['searchHistory']);
+  searchHistory = JSON.parse(localStorage['searchHistory']);
    console.log(searchHistory);
 }
 if(searchHistory.indexOf(search_field.value) == -1) {
-    searchHistory.unshift(search);
+    searchHistory.unshift(userSearch);
 if(searchHistory.length > 10) {
         searchHistory.pop();
     }
