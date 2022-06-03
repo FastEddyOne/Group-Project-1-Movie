@@ -1,8 +1,14 @@
 //Variable Placeholders
 var userSearch = ""
-var searchHistory = [];
+var searchHistory = []
 var watchModeID = ""
-
+var searchList = document.getElementById('search-list')
+var movieQuote = document.getElementById('movie-quote')
+var movieTitle = document.getElementById('movie-title')
+var movieRating = document.getElementById('ratings')
+var movieSummary = document.getElementById('movie-summary')
+var moviePoster = document.getElementById('movie-poster')
+var movieAvailability = document.getElementById('movie-availability')
 /*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
 
 document.getElementById('search_button').addEventListener('click', userInputComplete)
@@ -20,8 +26,7 @@ function userInputComplete(e) {
 }
 
 
-/*//Watchmode API Refactored
-/*Testing Refactored API Functions -Eddie*/
+/*//Watchmode API Refactored*/
 async function doAsyncTask() {
   const url = (
     'https://api.watchmode.com/v1/autocomplete-search/?apiKey=R4p1DztdqOo4OnAVqProfjk203wluPqWA2esGkj0&' +
@@ -36,24 +41,44 @@ async function doAsyncTask() {
       console.log(response)
       if (response.results.length > 0) {
         var item = response.results[0]
-        movieTitle = item.name //This comes from watchmode
         watchModeID = item.id //This comes from watchmode
-        movieRating = item.user_rating //This comes from watchmode
-        movieSummary = item.plot_overview //This comes from Watchmode
-        moviePoster = item.image_url //This comes from watchmode
-        whereToWatch = item.sources //This comes from Watchmode
-        movieTrailer = item.trailer //This comes from Watchmode
         console.log(item)
         console.log(item.id)
+        movieInfo()
       }
   })
   console.log('Fetched from: ' + url);
-  console.log(result);
+  //console.log(result);
+}
+
+async function movieInfo() {
+  const url = (
+    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=R4p1DztdqOo4OnAVqProfjk203wluPqWA2esGkj0'
+    );
+    
+  const result = await fetch(url)
+    .then(response => response.json())
+    .then(function(response) {
+      //console.log(response)
+      var watchModeItem = response
+        movieTitle.innerHTML = watchModeItem.title //This comes from watchmode
+        movieRating.innerHTML = watchModeItem.user_rating //This comes from.user_rating //This comes from watchmode
+        movieSummary.innerHTML = watchModeItem.plot_overview //This comes from Watchmode
+        moviePoster.src = watchModeItem.poster //This comes from watchmode
+        //whereToWatch = watchModeItem.sources.name //This comes from Watchmode
+        //whereToWatchLink= watchModeItem.sources.web_url //This comes from Watchmode
+        movieTrailer = watchModeItem.trailer //This comes from Watchmode
+
+        console.log(watchModeItem);
+      }
+  )
+  console.log('Fetched from: ' + url);
+  
 }
 
 //doAsyncTask(); Triggers api on page load 
 //Movie Quotes API --- Got API Key, and response working. Still need to pass in userSearch for movie title
-const options = {
+/*const options = {
   movie: userSearch,
 	method: 'GET',
 	headers: {
@@ -61,7 +86,7 @@ const options = {
 	}
 };
 
-/*fetch('https://movie-quotes-app.herokuapp.com/api/v1/quotes?movie=', options)
+fetch('https://movie-quotes-app.herokuapp.com/api/v1/quotes?movie=', options)
 	.then(response => response.json())
   .then(function(response) {
       console.log(response)
@@ -78,15 +103,12 @@ const options = {
   })
   
 	.catch(err => console.error(err));
-/*
+*/
   
-/*This function is just a test to see if the input has changed on the search form -Eddie */
+
 function searchInputChanged() {
 	console.log("searchInputChanged");
   }
-
-  /*WE NEED TO FIGURE OUT HOW TO PULL IN THE USER INPUTTED TEXT AND PASS IT INTO THE GLOBAL VARIABLE "userSearch" -Eddie */
-
 
 //$(".submit").on("click", function() {
 //     var value = $(this).siblings("#search-list").val();
