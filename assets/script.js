@@ -10,6 +10,7 @@ var movieRating = document.getElementById('ratings')
 var movieSummary = document.getElementById('movie-summary')
 var moviePoster = document.getElementById('movie-poster')
 var movieAvailability = document.getElementById('movie-availability')
+var embeddedTrailer = document.getElementById('embedded-trailer')
 /*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
 
 document.getElementById('search_button').addEventListener('click', userInputComplete)
@@ -69,8 +70,7 @@ async function movieInfo() {
         moviePoster.src = watchModeItem.poster //This comes from watchmode
         //whereToWatch = watchModeItem.sources.name //This comes from Watchmode
         //whereToWatchLink= watchModeItem.sources.web_url //This comes from Watchmode
-        movieTrailer = watchModeItem.trailer //This comes from Watchmode
-
+        embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/') //This comes from Watchmode, turns the link to video to embed
         console.log(watchModeItem);
       }
   )
