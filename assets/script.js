@@ -38,7 +38,6 @@ function userInputComplete(e) {
     console.log("No User Input")
     return noMovieInput.classList.remove('hidden')
   }
-  form.reset();
 }
 
 
@@ -46,7 +45,7 @@ function userInputComplete(e) {
 //WatchMode API Call
 async function callWatchMode() {
   const url = (
-    'https://api.watchmode.com/v1/autocomplete-search/?apiKey=R4p1DztdqOo4OnAVqProfjk203wluPqWA2esGkj0&' +
+    'https://api.watchmode.com/v1/autocomplete-search/?apiKey=41QN8oF7JAPUWkq90E7Cryxq3hozhGm3Mm8j6T' +
     new URLSearchParams({ 
       search_value: userSearch, 
       search_type: 1 }).toString()
@@ -68,7 +67,7 @@ async function callWatchMode() {
 
 async function watchModeTitleInfoCall() {
   const url = (
-    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=R4p1DztdqOo4OnAVqProfjk203wluPqWA2esGkj0'
+    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq90E7Cryxq3hozhGm3Mm8j6T'
     );
   
     
@@ -82,7 +81,7 @@ async function watchModeTitleInfoCall() {
         movieRating.innerHTML = watchModeItem.user_rating //This comes from.user_rating //This comes from watchmode
         movieSummary.innerHTML = watchModeItem.plot_overview //This comes from Watchmode
         moviePoster.src = watchModeItem.poster //This comes from watchmode
-       
+        
         //whereToWatch = watchModeItem.sources.name //This comes from Watchmode
         //whereToWatchLink= watchModeItem.sources.web_url //This comes from Watchmode
         embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/') //This comes from Watchmode, turns the link to video to embed
@@ -92,6 +91,8 @@ async function watchModeTitleInfoCall() {
       }
   )
 }
+
+
 
 
 
