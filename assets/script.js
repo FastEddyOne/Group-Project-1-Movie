@@ -87,7 +87,7 @@ async function watchModeTitleInfoCall() {
 //MovieQuote API Call
 async function getMovieQuoteCall() {
 const options = {
-  movie: userSearch,
+  movie: 'movie?'+ userSearch,
 	method: 'GET',
 	headers: {
 		Authorization: 'Token token=5HRYr2S7rgwZVzqbxM5uNAtt',
@@ -95,13 +95,13 @@ const options = {
 };
 
 fetch('https://moviequotes.rocks/api/v1/quotes', options)
-	.then(response => response.json())
-  .then(function(response) {
-    var quoteResponseItem = (response)    
-        movieQuote.innerHTML = quoteResponseItem.content
-        movieQuotePerson.innerHTML = quoteResponseItem.character
-          console.log(quoteResponseItem)
-      }
+	.then(quoteResponseItem => quoteResponseItem.json())
+  .then(function(quoteResponseItem) {
+        movieQuote.innerHTML = quoteResponseItem[0].content
+        movieQuotePerson.innerHTML = quoteResponseItem[0].character.name
+          console.log(quoteResponseItem[0].content)
+          console.log(quoteResponseItem[0].character.name)
+      },
   )
 
   .catch(err => console.error(err));
