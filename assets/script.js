@@ -12,6 +12,7 @@ var moviePoster = document.getElementById('movie-poster')
 var movieAvailability = document.getElementById('movie-availability')
 var embeddedTrailer = document.getElementById('embedded-trailer')
 const movieList = document.getElementById("movie-list");
+
 /*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
 
 //Get User Input
@@ -27,6 +28,7 @@ function userInputComplete(e) {
   else {
     console.log("No User Input")
   }
+  form.reset();
 }
 
 
@@ -101,6 +103,7 @@ fetch('https://moviequotes.rocks/api/v1/quotes', options)
   .catch(err => console.error(err));
 }
 
+
 //Local Storage Stuff
 
 
@@ -126,7 +129,7 @@ function saveSearchHistory() {
   })
   .join("");
 
-    } 
+  } 
 
 
   /*function getItems() {
