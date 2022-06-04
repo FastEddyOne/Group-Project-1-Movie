@@ -85,6 +85,10 @@ h2 {
     width: 400px !important;
 }
 
+#no-movie-input {
+    width: 300px !important;
+}
+
 .history-quote {
     display: flex;
     flex-direction: row;

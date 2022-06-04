@@ -15,7 +15,7 @@
     
     <div class="row both-sides">
       <div class="left-side">
-        <form>
+        <form id="search-bar">
           <div class="grid-container">
             <div class="grid-x grid-padding-x">
               <div class="medium-6 cell field-and-button">
@@ -27,6 +27,14 @@
             </div>
           </div>
         </form>
+
+        <div class="callout small alert hidden" id="no-movie-input" data-closable>
+          <p>You must put in a movie title!</p>
+          <button id="alert-button" class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
         <div class="history-quote">
           <section class="search-history">
             <h3 id="searched-Movies" class="container">Search History</h3>
