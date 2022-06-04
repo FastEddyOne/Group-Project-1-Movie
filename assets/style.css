@@ -28,6 +28,16 @@ h1 {
     background-color: var(--mintgreen);
 }
 
+h2 {
+    text-align: center;
+    font-weight: bold;
+    color: var(--sunflower);
+}
+
+h3 {
+    padding-top: 20px;
+}
+
 .grid-container {
     padding-left: 0px;
     margin-left: 0px;
@@ -54,6 +64,12 @@ h1 {
 
 .right-side {
     width: 800px;
+}
+
+#welcome-info {
+    margin-right: 20px;
+    color: var(--beachtan);
+
 }
 
 .main-info {
