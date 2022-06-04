@@ -17,6 +17,8 @@ const movieList = document.getElementById("movie-list");
 /*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
 
 
+saveSearchHistory();
+
 //Get User Input
 document.getElementById('search_button').addEventListener('click', userInputComplete)
 function userInputComplete(e) {
