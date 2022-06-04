@@ -10,10 +10,9 @@
   </head>
 
   <body>
-    <h1>🎥 Search for a movie or show! 🎥</h1>
-
-
-    <div class="row tobenamed">
+    <h1>🎥 MovieSearch 🎥</h1>
+    
+    <div class="row both-sides">
       <div class="left-side">
         <form>
           <div class="grid-container">
@@ -49,7 +48,12 @@
         </section>
       </div>
 
-      <div class="right-side">
+      <div class="right-side" id="welcome-info">
+        <h2>Welcome!</h2>
+        <p>Our website is meant to make your life easier! Just plug in the movie or show you would like to watch, and voila! You will have your movie details and availability!!</p>
+      </div>
+
+      <div class="right-side hidden" id="api-info">
         <section class="main-info">
           <div class="movie-info">
             <h3><span id="movie-title"></span></h3>
@@ -74,6 +78,10 @@
         </button>
       </div>
     </div>
+
+    <!-- Attribution for Watchmode -->
+    <footer><span>Streaming data powered by Watchmode.com</span></footer>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.12/what-input.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>    
