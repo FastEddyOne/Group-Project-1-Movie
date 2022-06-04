@@ -13,7 +13,10 @@ var movieAvailability = document.getElementById('movie-availability')
 var embeddedTrailer = document.getElementById('embedded-trailer')
 var welcomeInfo = document.getElementById('welcome-info')
 var apiInfo = document.getElementById('api-info')
-const movieList = document.getElementById("movie-list");
+var noMovieInput = document.getElementById('no-movie-input')
+var alertButton = document.getElementById('alert-button')
+var searchBar = document.getElementById('search-bar')
+const movieList = document.getElementById("movie-list")
 /*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
 
 
@@ -21,6 +24,7 @@ saveSearchHistory();
 
 //Get User Input
 document.getElementById('search_button').addEventListener('click', userInputComplete)
+
 function userInputComplete(e) {
   e.preventDefault()
     userSearch = document.getElementById('search_field').value
@@ -28,9 +32,11 @@ function userInputComplete(e) {
   if (userSearch.length > 0) {
     saveSearchHistory()
     callWatchMode()
+    noMovieInput.classList.add('hidden')
   }
   else {
     console.log("No User Input")
+    return noMovieInput.classList.remove('hidden')
   }
 }
 
