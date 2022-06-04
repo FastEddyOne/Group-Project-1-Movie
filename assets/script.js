@@ -11,9 +11,14 @@ var movieSummary = document.getElementById('movie-summary')
 var moviePoster = document.getElementById('movie-poster')
 var movieAvailability = document.getElementById('movie-availability')
 var embeddedTrailer = document.getElementById('embedded-trailer')
+var welcomeInfo = document.getElementById('welcome-info')
+var apiInfo = document.getElementById('api-info')
 const movieList = document.getElementById("movie-list");
 
 /*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
+
+
+saveSearchHistory();
 
 //Get User Input
 document.getElementById('search_button').addEventListener('click', userInputComplete)
@@ -76,6 +81,7 @@ async function watchModeTitleInfoCall() {
         embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/') //This comes from Watchmode, turns the link to video to embed
         console.log(watchModeItem);
         getMovieQuoteCall()
+        hideShowInfo()
       }
   )
 }
@@ -103,6 +109,12 @@ fetch('https://moviequotes.rocks/api/v1/quotes', options)
   .catch(err => console.error(err));
 }
 
+function hideShowInfo() {
+  welcomeInfo.classList.add('hidden');
+  apiInfo.classList.remove('hidden');
+}
+
+//Local Storage Stuff
 
 //Local Storage Stuff
 

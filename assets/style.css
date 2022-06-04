@@ -15,7 +15,7 @@
 body {
     background-color: var(--darkblue);
     color: var(--beachtan);
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Arial, Helvetica, sans-serif
 }
 
 h1 {
@@ -28,14 +28,21 @@ h1 {
     background-color: var(--mintgreen);
 }
 
+h2 {
+    text-align: center;
+    font-weight: bold;
+    color: var(--sunflower);
+}
+
 .grid-container {
     padding-left: 0px;
     margin-left: 0px;
     padding-top: 5px;
+    margin-top: 10px;
 
 }
 
-.tobenamed {
+.both-sides {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -45,11 +52,21 @@ h1 {
 }
 
 .left-side {
-    width: 500px;
+    width: 600px;
+}
+
+.hidden {
+    display: none;
 }
 
 .right-side {
     width: 800px;
+}
+
+#welcome-info {
+    margin-right: 20px;
+    color: var(--beachtan);
+
 }
 
 .main-info {
@@ -68,10 +85,41 @@ h1 {
     width: 400px !important;
 }
 
-#search-list {
-    padding-top: 20px;
-    padding-bottom: 20px;
+.history-quote {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: auto;
+    margin-top: 20px;
+}
+
+.quote-box {
+    width: 250px;
+}
+
+.search-history {
+    border-style: solid;
+    padding: 15px;
     color: var(--mintgreen);
+}
+
+#searched-Movies {
+    text-decoration: underline;
+    color: var(--beachtan);
+}
+
+#search-list {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    color: var(--sunflower);
+    font-size: large;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+li {
+    list-style: none;
+    text-transform: capitalize;
 }
 
 #movie-quote {
@@ -99,6 +147,13 @@ h1 {
 
 }
 
-ol{
-    list-style-type: none;
+footer {
+    color: var(--beachtan);
+    background-color: var(--mintgreen);
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 25px;
+    width: 100%;
+    text-align: center;
 }
