@@ -65,6 +65,7 @@ async function watchModeTitleInfoCall() {
   const url = (
     'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=R4p1DztdqOo4OnAVqProfjk203wluPqWA2esGkj0'
     );
+  
     
   const result = await fetch(url)
     .then(response => response.json())
@@ -76,7 +77,7 @@ async function watchModeTitleInfoCall() {
         movieRating.innerHTML = watchModeItem.user_rating //This comes from.user_rating //This comes from watchmode
         movieSummary.innerHTML = watchModeItem.plot_overview //This comes from Watchmode
         moviePoster.src = watchModeItem.poster //This comes from watchmode
-        movieAvailability = watchModeItem.releases //comes from watchmode
+       
         //whereToWatch = watchModeItem.sources.name //This comes from Watchmode
         //whereToWatchLink= watchModeItem.sources.web_url //This comes from Watchmode
         embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/') //This comes from Watchmode, turns the link to video to embed
@@ -86,6 +87,8 @@ async function watchModeTitleInfoCall() {
       }
   )
 }
+
+
 
 //MovieQuote API Call
 async function getMovieQuoteCall() {
@@ -145,37 +148,4 @@ function saveSearchHistory() {
   } 
 
 
-  /*function getItems() {
-    searchList = JSON.parse(localStorage.getItem("searchHistory"));
-    if (searchList !== null) {
-        searchHistory = searchList;
-    };
-    for (i = 0; i < searchHistory.length; i++) {
-        if (i == 10) {
-            break;
-        }
-    }
-} */
 
-
-
-  /*function handleFormSubmit(event) {
-    event.preventDefault(); 
-    var movieItem = $('input[name="search_filed"]').val();
-    if(!movieItem) {
-      console.log('Nothing entered in search bar');
-      return;
-    }
-    var movieListEl = $('<li>');
-    movieListEl.text(movieItem);
-
-  } */
-  
-  /*$(".submit").on("click", function(){
-    var list = $(this).children("#search_filed").val();
-    var search = $(this).parent().attr("id");
-    localStorage.setItem(search, list);
-      
-  } )
-  
-  $("#search_field #searched-movies").val(localStorage.getItem(".movie-list")); */
