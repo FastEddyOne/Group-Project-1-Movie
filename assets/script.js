@@ -11,6 +11,7 @@ var movieSummary = document.getElementById('movie-summary')
 var moviePoster = document.getElementById('movie-poster')
 var movieAvailability = document.getElementById('movie-availability')
 var embeddedTrailer = document.getElementById('embedded-trailer')
+const movieList = document.getElementById("movie-list");
 /*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
 
 //Get User Input
@@ -102,6 +103,7 @@ fetch('https://moviequotes.rocks/api/v1/quotes', options)
 
 //Local Storage Stuff
 
+  /*WE NEED TO FIGURE OUT HOW TO PULL IN THE USER INPUTTED TEXT AND PASS IT INTO THE GLOBAL VARIABLE "userSearch" -Eddie */
 //$(".submit").on("click", function() {
 //     var value = $(this).siblings("#search-list").val();
 //     var searchedMovies= $(this).parent().attr("id");
@@ -113,20 +115,59 @@ fetch('https://moviequotes.rocks/api/v1/quotes', options)
 function saveSearchHistory() {
 
 
-if(localStorage["searchHistory"]) {
-  searchHistory = JSON.parse(localStorage['searchHistory']);
-   console.log(searchHistory);
-}
-if(searchHistory.indexOf(search_field.value) == -1) {
-    searchHistory.unshift(userSearch);
-if(searchHistory.length > 10) {
-        searchHistory.pop();
-    }
-    localStorage['searchHistory'] = JSON.stringify(searchHistory);
-}
-}
-//$(".submit").on("click", function(){
-    
-//} )
+  if(localStorage["searchHistory"]) {
+    searchHistory = JSON.parse(localStorage['searchHistory']);
+     console.log(searchHistory);
+  }
+  if(searchHistory.indexOf(search_field.value) == -1) {
+      searchHistory.unshift(userSearch);
+  if(searchHistory.length > 10) {
+          searchHistory.pop();
+      }
+      localStorage['searchHistory'] = JSON.stringify(searchHistory);
+  }
+  
 
-// $("#search-list").val(localStorage.getItem("search-list"));
+  movieList.innerHTML = searchHistory
+  .map( userSearch => {
+      return `<li class="search-results">${userSearch}<li>`;
+  })
+  .join("");
+
+  } 
+
+
+  /*function getItems() {
+    searchList = JSON.parse(localStorage.getItem("searchHistory"));
+    if (searchList !== null) {
+        searchHistory = searchList;
+    };
+    for (i = 0; i < searchHistory.length; i++) {
+        if (i == 10) {
+            break;
+        }
+    }
+} */
+
+
+
+  /*function handleFormSubmit(event) {
+    event.preventDefault(); 
+    var movieItem = $('input[name="search_filed"]').val();
+    if(!movieItem) {
+      console.log('Nothing entered in search bar');
+      return;
+    }
+    var movieListEl = $('<li>');
+    movieListEl.text(movieItem);
+
+  } */
+  
+  /*$(".submit").on("click", function(){
+    var list = $(this).children("#search_filed").val();
+    var search = $(this).parent().attr("id");
+    localStorage.setItem(search, list);
+      
+  } )
+  
+  $("#search_field #searched-movies").val(localStorage.getItem(".movie-list")); */
