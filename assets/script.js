@@ -17,10 +17,6 @@ var noMovieInput = document.getElementById('no-movie-input')
 var alertButton = document.getElementById('alert-button')
 var searchBar = document.getElementById('search-bar')
 const movieList = document.getElementById("movie-list")
-/*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
-
-
-saveSearchHistory();
 
 //Get User Input
 document.getElementById('search_button').addEventListener('click', userInputComplete)
@@ -28,21 +24,18 @@ document.getElementById('search_button').addEventListener('click', userInputComp
 function userInputComplete(e) {
   e.preventDefault()
     userSearch = document.getElementById('search_field').value
-      console.log(userSearch)
   if (userSearch.length > 0) {
     saveSearchHistory()
     callWatchMode()
     noMovieInput.classList.add('hidden')
   }
   else {
-    console.log("No User Input")
     return noMovieInput.classList.remove('hidden')
   }
 }
 
-
 /*API Calls*/
-//WatchMode API Call
+//WatchMode API Calls
 async function callWatchMode() {
   const url = (
     'https://api.watchmode.com/v1/autocomplete-search/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T&' +
@@ -50,16 +43,12 @@ async function callWatchMode() {
       search_value: userSearch, 
       search_type: 1 }).toString()
   );
-
   const result = await fetch(url)
     .then(response => response.json())
     .then(function(response) {
-      console.log(response)
       if (response.results.length > 0) {
         var item = response.results[0]
-          watchModeID = item.id //This comes from Watchmode
-            console.log(item)
-            console.log(item.id)
+          watchModeID = item.id
         watchModeTitleInfoCall()
       }
   })
@@ -69,21 +58,18 @@ async function watchModeTitleInfoCall() {
   const url = (
     'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T'
     );
-    
   const result = await fetch(url)
     .then(response => response.json())
     .then(function(response) {
-      //console.log(response)
       var watchModeItem = response
-        movieTitle.innerHTML = watchModeItem.title 
+        movieTitle.innerHTML = watchModeItem.title
         titleMovie.innerHTML = watchModeItem.title
-        movieRating.innerHTML = watchModeItem.user_rating //This comes from.user_rating //This comes from watchmode
-        movieSummary.innerHTML = watchModeItem.plot_overview //This comes from Watchmode
-        moviePoster.src = watchModeItem.poster //This comes from watchmode
-        //whereToWatch = watchModeItem.sources.name //This comes from Watchmode
-        //whereToWatchLink= watchModeItem.sources.web_url //This comes from Watchmode
-        embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/') //This comes from Watchmode, turns the link to video to embed
-        console.log(watchModeItem);
+        movieRating.innerHTML = watchModeItem.user_rating
+        movieSummary.innerHTML = watchModeItem.plot_overview
+        moviePoster.src = watchModeItem.poster
+        //whereToWatch = watchModeItem.sources.name
+        //whereToWatchLink= watchModeItem.sources.web_url
+        embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/')
         getMovieQuoteCall()
         hideShowInfo()
       }
@@ -98,20 +84,15 @@ const options = {
 		Authorization: 'Token token=5HRYr2S7rgwZVzqbxM5uNAtt',
 	}
 };
-
 fetch('https://moviequotes.rocks/api/v1/quotes?movie=' + userSearch, options)
 	.then(quoteResponseItem => quoteResponseItem.json())
   .then(function(quoteResponseItem) {
     if(quoteResponseItem.length > 0){
         movieQuote.innerHTML = quoteResponseItem[0].content
         movieQuotePerson.innerHTML = quoteResponseItem[0].character.name
-          console.log(quoteResponseItem[0].content)
-          console.log(quoteResponseItem[0].character.name)
       }
-      else hideQuoteBox()  
+      else hideQuoteBox()
   })
-  
-
   .catch(err => console.error(err));
 }
 
@@ -124,12 +105,10 @@ function hideQuoteBox() {
 function hideShowInfo() {
   welcomeInfo.classList.add('hidden');
   apiInfo.classList.remove('hidden');
-
 }
 
 //Local Storage Stuff
 
-  /*WE NEED TO FIGURE OUT HOW TO PULL IN THE USER INPUTTED TEXT AND PASS IT INTO THE GLOBAL VARIABLE "userSearch" -Eddie */
 //$(".submit").on("click", function() {
 //     var value = $(this).siblings("#search-list").val();
 //     var searchedMovies= $(this).parent().attr("id");
