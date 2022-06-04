@@ -103,14 +103,6 @@ fetch('https://moviequotes.rocks/api/v1/quotes', options)
 
 //Local Storage Stuff
 
-  /*WE NEED TO FIGURE OUT HOW TO PULL IN THE USER INPUTTED TEXT AND PASS IT INTO THE GLOBAL VARIABLE "userSearch" -Eddie */
-//$(".submit").on("click", function() {
-//     var value = $(this).siblings("#search-list").val();
-//     var searchedMovies= $(this).parent().attr("id");
-//     localStorage.setItem(searchedMovies, value);
-// })
-
-// $("#search-list #searched-Movies").val(localStorage.getItem("search-list"));
 
 function saveSearchHistory() {
 
@@ -134,7 +126,7 @@ function saveSearchHistory() {
   })
   .join("");
 
-  } 
+    } 
 
 
   /*function getItems() {

@@ -98,3 +98,7 @@ h1 {
     height: 250px;
 
 }
+
+ol {
+    list-style-type: none;
+}
