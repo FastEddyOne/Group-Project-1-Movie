@@ -35,7 +35,7 @@ h1 {
 
 }
 
-.tobenamed {
+.both-sides {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -46,6 +46,10 @@ h1 {
 
 .left-side {
     width: 500px;
+}
+
+.hidden {
+    display: none;
 }
 
 .right-side {
@@ -97,4 +101,15 @@ h1 {
     width: 300px;
     height: 250px;
 
+}
+
+footer {
+    color: var(--beachtan);
+    background-color: var(--mintgreen);
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 25px;
+    width: 100%;
+    text-align: center;
 }
