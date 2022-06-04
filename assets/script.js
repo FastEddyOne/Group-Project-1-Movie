@@ -76,6 +76,7 @@ async function watchModeTitleInfoCall() {
         movieRating.innerHTML = watchModeItem.user_rating //This comes from.user_rating //This comes from watchmode
         movieSummary.innerHTML = watchModeItem.plot_overview //This comes from Watchmode
         moviePoster.src = watchModeItem.poster //This comes from watchmode
+        movieAvailability = watchModeItem.releases //comes from watchmode
         //whereToWatch = watchModeItem.sources.name //This comes from Watchmode
         //whereToWatchLink= watchModeItem.sources.web_url //This comes from Watchmode
         embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/') //This comes from Watchmode, turns the link to video to embed
