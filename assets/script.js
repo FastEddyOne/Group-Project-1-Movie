@@ -45,7 +45,7 @@ function userInputComplete(e) {
 //WatchMode API Call
 async function callWatchMode() {
   const url = (
-    'https://api.watchmode.com/v1/autocomplete-search/?apiKey=41QN8oF7JAPUWkq90E7Cryxq3hozhGm3Mm8j6T' +
+    'https://api.watchmode.com/v1/autocomplete-search/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T&' +
     new URLSearchParams({ 
       search_value: userSearch, 
       search_type: 1 }).toString()
@@ -67,7 +67,7 @@ async function callWatchMode() {
 
 async function watchModeTitleInfoCall() {
   const url = (
-    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq90E7Cryxq3hozhGm3Mm8j6T'
+    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T'
     );
   
     
