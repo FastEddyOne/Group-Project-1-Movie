@@ -25,6 +25,7 @@ saveSearchHistory();
 
 //Get User Input
 document.getElementById('search_button').addEventListener('click', userInputComplete)
+document.getElementById('search_field').addEventListener('keyup', (e) => e.target.value=e.target.value.trimStart())
 
 function userInputComplete(e) {
   e.preventDefault()
