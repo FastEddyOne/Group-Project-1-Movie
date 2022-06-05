@@ -22,6 +22,7 @@ const movieList = document.getElementById("movie-list")
 //Get User Input
 document.getElementById('search_button').addEventListener('click', userInputComplete)
 document.getElementById('search_field').addEventListener('keyup', (e) => e.target.value=e.target.value.trimStart())
+$('#search-bar').on('submit', (e) => {e.preventDefault(); return false})
 
 function userInputComplete(e) {
   e.preventDefault()
