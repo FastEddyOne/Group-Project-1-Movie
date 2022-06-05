@@ -28,6 +28,7 @@
           </div>
         </form>
 
+        <!-- This is an alert if the user passes in nothing -->
         <div class="callout small alert hidden" id="no-movie-input" data-closable>
           <p>You must put in a movie title!</p>
           <button id="alert-button" class="close-button" aria-label="Dismiss alert" type="button" data-close>
@@ -53,6 +54,7 @@
         </div>
       </div>
 
+      <!-- This is what shows when you load the website, before you put in a movie title -->
       <div class="right-side" id="welcome-info">
         <h2>Welcome!</h2>
         <p>Our website is meant to make your life easier! Just plug in the movie or show you would like to watch, and voila! You will have your movie details and availability!!</p>
@@ -64,7 +66,7 @@
             <h3><span id="movie-title"></span></h3>
             <p>Ratings: <span id="ratings"></span></p>
             <p>Summary: <span id="movie-summary"></span></p>
-            <p><button class="button" data-open="trailer-modal">Watch trailer</button></p>
+            <p><button id="trailer-button" class="button" data-open="trailer-modal">Watch trailer</button></p>
           </div>
           <img id="movie-poster" src="" alt = "Movie Poster Image"></img>
           <!-- All spans will be pulled directly from Watchmode or other apis -->
