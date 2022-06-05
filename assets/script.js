@@ -24,6 +24,9 @@ document.getElementById('search_button').addEventListener('click', userInputComp
 document.getElementById('search_field').addEventListener('keyup', (e) => e.target.value=e.target.value.trimStart())
 $('#search-bar').on('submit', (e) => {e.preventDefault(); return false})
 
+
+saveSearchHistory()
+
 function userInputComplete(e) {
   e.preventDefault()
     userSearch = document.getElementById('search_field').value
@@ -177,9 +180,16 @@ function saveSearchHistory() {
 
   movieList.innerHTML = searchHistory
   .map( userSearch => {
-      return `<li class="search-results">${userSearch}<li>`;
+      return `<li class="search-results"><a>${userSearch}</a><li>`;
   })
   .join("");
+
+  $('li a', userSearch).on('click', (e) => {
+    $('#search_field').val(e.target.innerText)
+    userSearch = e.target.innerText
+    callWatchMode()
+    console.log(e.target)
+  })
 
   } 
 
