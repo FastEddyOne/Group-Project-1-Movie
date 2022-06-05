@@ -46,7 +46,7 @@ function userInputComplete(e) {
 //WatchMode API Call
 async function callWatchMode() {
   const url = (
-    'https://api.watchmode.com/v1/autocomplete-search/?apiKey=BC2P26NMz3XrmBePKYtC1jz0TqOO2eZ3I1WwKL2l&' +
+    'https://api.watchmode.com/v1/autocomplete-search/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T&' +
     new URLSearchParams({ 
       search_value: userSearch, 
       search_type: 1 }).toString()
@@ -68,7 +68,7 @@ async function callWatchMode() {
 
 async function watchModeTitleInfoCall() {
   const url = (
-    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=BC2P26NMz3XrmBePKYtC1jz0TqOO2eZ3I1WwKL2l'
+    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T'
     );
     
   const result = await fetch(url)
@@ -99,29 +99,38 @@ async function watchModeTitleInfoCall() {
 //MovieQuote API Call
 async function getMovieQuoteCall() {
 const options = {
-  movie: userSearch,
 	method: 'GET',
 	headers: {
 		Authorization: 'Token token=5HRYr2S7rgwZVzqbxM5uNAtt',
 	}
 };
 
-fetch('https://moviequotes.rocks/api/v1/quotes', options)
-	.then(response => response.json())
-  .then(function(response) {
-    var quoteResponseItem = (response)    
-        movieQuote.innerHTML = quoteResponseItem.content
-        movieQuotePerson.innerHTML = quoteResponseItem.character
-          console.log(quoteResponseItem)
+fetch('https://moviequotes.rocks/api/v1/quotes?movie=' + userSearch, options)
+	.then(quoteResponseItem => quoteResponseItem.json())
+  .then(function(quoteResponseItem) {
+    if(quoteResponseItem.length > 0){
+        movieQuote.innerHTML = quoteResponseItem[0].content
+        movieQuotePerson.innerHTML = quoteResponseItem[0].character.name
+          console.log(quoteResponseItem[0].content)
+          console.log(quoteResponseItem[0].character.name)
       }
-  )
+      else hideQuoteBox()  
+  })
+  
 
   .catch(err => console.error(err));
+}
+
+function hideQuoteBox() {
+  movieQuote.style.visibility = 'hidden'
+  movieQuotePerson.style.visibility = 'hidden'
+  document.getElementById('quote-header').style.visibility = 'hidden'
 }
 
 function hideShowInfo() {
   welcomeInfo.classList.add('hidden');
   apiInfo.classList.remove('hidden');
+
 }
 
 //Local Storage Stuff
