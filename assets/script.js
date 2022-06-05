@@ -81,7 +81,7 @@ async function watchModeTitleInfoCall() {
         movieRating.innerHTML = watchModeItem.user_rating //This comes from.user_rating //This comes from watchmode
         movieSummary.innerHTML = watchModeItem.plot_overview //This comes from Watchmode
         moviePoster.src = watchModeItem.poster //This comes from watchmode
-        
+        movieAvailability.innerHTML = watchModeID.sources 
         //whereToWatch = watchModeItem.sources.name //This comes from Watchmode
         //whereToWatchLink= watchModeItem.sources.web_url //This comes from Watchmode
         embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/') //This comes from Watchmode, turns the link to video to embed
@@ -92,9 +92,17 @@ async function watchModeTitleInfoCall() {
   )
 }
 
+//how to watch/stream API call
+/*async function watchModeSourceInfoCall() {
+  let url = ('https://api.watchmode.com/v1/title/' + watchModeID + '/sources/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T');
+  result = await fetch(url)
+  .then(response => response.json())
+  .then(function(response) {
+    //console.log(response)
+   watchModeItem = response
+    
 
-
-
+}*/
 
 //MovieQuote API Call
 async function getMovieQuoteCall() {
