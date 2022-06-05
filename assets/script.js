@@ -35,11 +35,9 @@ function userInputComplete(e) {
   if (userSearch.length > 0) {
     saveSearchHistory()
     callWatchMode()
-    // noMovieInput.classList.add('hidden')
   }
   else {
     console.log("No User Input")
-    // return noMovieInput.classList.remove('hidden')
   }
 }
 
