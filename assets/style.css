@@ -132,6 +132,14 @@ li {
     list-style: none;
 }
 
+a {
+    color: var(--sunflower);
+}
+
+a:hover {
+    color: var(--mintgreen);
+}
+
 #movie-quote {
     color: var(--sunflower);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
