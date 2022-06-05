@@ -29,15 +29,16 @@ document.getElementById('search_button').addEventListener('click', userInputComp
 function userInputComplete(e) {
   e.preventDefault()
     userSearch = document.getElementById('search_field').value
+    userSearch = userSearch.trim()
       console.log(userSearch)
   if (userSearch.length > 0) {
     saveSearchHistory()
     callWatchMode()
-    noMovieInput.classList.add('hidden')
+    // noMovieInput.classList.add('hidden')
   }
   else {
     console.log("No User Input")
-    return noMovieInput.classList.remove('hidden')
+    // return noMovieInput.classList.remove('hidden')
   }
 }
 
@@ -46,7 +47,7 @@ function userInputComplete(e) {
 //WatchMode API Call
 async function callWatchMode() {
   const url = (
-    'https://api.watchmode.com/v1/autocomplete-search/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T&' +
+    'https://api.watchmode.com/v1/autocomplete-search/?apiKey=BC2P26NMz3XrmBePKYtC1jz0TqOO2eZ3I1WwKL2l&' +
     new URLSearchParams({ 
       search_value: userSearch, 
       search_type: 1 }).toString()
@@ -68,7 +69,7 @@ async function callWatchMode() {
 
 async function watchModeTitleInfoCall() {
   const url = (
-    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T'
+    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=BC2P26NMz3XrmBePKYtC1jz0TqOO2eZ3I1WwKL2l'
     );
     
   const result = await fetch(url)
