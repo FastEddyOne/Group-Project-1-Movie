@@ -16,6 +16,7 @@ var apiInfo = document.getElementById('api-info')
 var noMovieInput = document.getElementById('no-movie-input')
 var alertButton = document.getElementById('alert-button')
 var searchBar = document.getElementById('search-bar')
+var trailerButton = document.getElementById('trailer-button')
 const movieList = document.getElementById("movie-list")
 /*var movieQuote = REPLACEME //This comes from MovieQuotesAPI*/
 
@@ -45,7 +46,7 @@ function userInputComplete(e) {
 //WatchMode API Call
 async function callWatchMode() {
   const url = (
-    'https://api.watchmode.com/v1/autocomplete-search/?apiKey=R4p1DztdqOo4OnAVqProfjk203wluPqWA2esGkj0&' +
+    'https://api.watchmode.com/v1/autocomplete-search/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T&' +
     new URLSearchParams({ 
       search_value: userSearch, 
       search_type: 1 }).toString()
@@ -67,7 +68,7 @@ async function callWatchMode() {
 
 async function watchModeTitleInfoCall() {
   const url = (
-    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=R4p1DztdqOo4OnAVqProfjk203wluPqWA2esGkj0'
+    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T'
     );
     
   const result = await fetch(url)
@@ -84,6 +85,11 @@ async function watchModeTitleInfoCall() {
         //whereToWatchLink= watchModeItem.sources.web_url //This comes from Watchmode
         embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/') //This comes from Watchmode, turns the link to video to embed
         console.log(watchModeItem);
+        if (watchModeItem.trailer == "") {
+          trailerButton.classList.add('hidden')
+        } else {
+          trailerButton.classList.remove('hidden')
+        }
         getMovieQuoteCall()
         hideShowInfo()
       }
@@ -188,3 +194,4 @@ function saveSearchHistory() {
   } )
   
   $("#search_field #searched-movies").val(localStorage.getItem(".movie-list")); */
+
