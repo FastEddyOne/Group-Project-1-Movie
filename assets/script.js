@@ -16,18 +16,21 @@ var apiInfo = document.getElementById('api-info')
 var noMovieInput = document.getElementById('no-movie-input')
 var alertButton = document.getElementById('alert-button')
 var searchBar = document.getElementById('search-bar')
+var trailerButton = document.getElementById('trailer-button')
 const movieList = document.getElementById("movie-list")
 
 //Get User Input
 document.getElementById('search_button').addEventListener('click', userInputComplete)
+document.getElementById('search_field').addEventListener('keyup', (e) => e.target.value=e.target.value.trimStart())
 
 function userInputComplete(e) {
   e.preventDefault()
     userSearch = document.getElementById('search_field').value
+    userSearch = userSearch.trim()
+
   if (userSearch.length > 0) {
     saveSearchHistory()
     callWatchMode()
-    noMovieInput.classList.add('hidden')
   }
   else {
     return noMovieInput.classList.remove('hidden')
@@ -64,6 +67,19 @@ async function watchModeTitleInfoCall() {
       var watchModeItem = response
         movieTitle.innerHTML = watchModeItem.title
         titleMovie.innerHTML = watchModeItem.title
+        movieRating.innerHTML = watchModeItem.user_rating
+        movieSummary.innerHTML = watchModeItem.plot_overview
+        moviePoster.src = watchModeItem.poster
+        //whereToWatch = watchModeItem.sources.name
+        //whereToWatchLink= watchModeItem.sources.web_url
+        embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/')
+
+        if (watchModeItem.trailer == "") {
+          trailerButton.classList.add('hidden')
+        } else {
+          trailerButton.classList.remove('hidden')
+        }
+
         movieRating.innerHTML = watchModeItem.user_rating
         movieSummary.innerHTML = watchModeItem.plot_overview
         moviePoster.src = watchModeItem.poster
@@ -176,3 +192,4 @@ function saveSearchHistory() {
   } )
   
   $("#search_field #searched-movies").val(localStorage.getItem(".movie-list")); */
+

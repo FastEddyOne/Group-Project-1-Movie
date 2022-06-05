@@ -15,25 +15,19 @@
     
     <div class="row both-sides">
       <div class="left-side">
-        <form id="search-bar">
+        <form data-abide id="search-bar" onsubmit="event.preventDefault(); return false">
           <div class="grid-container">
             <div class="grid-x grid-padding-x">
               <div class="medium-6 cell field-and-button">
                 <label>
-                  <input id="search_field" type="text" placeholder="movie title">
+                  <input id="search_field" type="text" required placeholder="Movie/Show Title">
                 </label>
-                <button id="search_button" class="submit success button">Search</button>
+                <label class="form-error" data-form-error-for="search_field">You must enter in a title!</label>
+                <button id="search_button" type="submit" class="submit success button">Search</button>
               </div>
             </div>
           </div>
         </form>
-
-        <div class="callout small alert hidden" id="no-movie-input" data-closable>
-          <p>You must put in a movie title!</p>
-          <button id="alert-button" class="close-button" aria-label="Dismiss alert" type="button" data-close>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
 
         <div class="history-quote">
           <section class="search-history">
@@ -53,6 +47,7 @@
         </div>
       </div>
 
+      <!-- This is what shows when you load the website, before you put in a movie title -->
       <div class="right-side" id="welcome-info">
         <h2>Welcome!</h2>
         <p>Our website is meant to make your life easier! Just plug in the movie or show you would like to watch, and voila! You will have your movie details and availability!!</p>
@@ -64,7 +59,7 @@
             <h3><span id="movie-title"></span></h3>
             <p>Ratings: <span id="ratings"></span></p>
             <p>Summary: <span id="movie-summary"></span></p>
-            <p><button class="button" data-open="trailer-modal">Watch trailer</button></p>
+            <p><button id="trailer-button" class="button" data-open="trailer-modal">Watch trailer</button></p>
           </div>
           <img id="movie-poster" src="" alt = "Movie Poster Image"></img>
           <!-- All spans will be pulled directly from Watchmode or other apis -->
