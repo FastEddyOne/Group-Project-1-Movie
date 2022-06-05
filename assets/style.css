@@ -98,7 +98,14 @@ h2 {
 }
 
 .quote-box {
-    width: 250px;
+    width: 150px;
+    margin-right: 50px;
+}
+
+.quote {
+    margin-top: 10px;
+    text-align: center;
+    font-size: large;
 }
 
 .search-history {
@@ -130,6 +137,11 @@ li {
     color: var(--sunflower);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 15px;
+}
+
+#movie-quote-person {
+    color: var(--sunflower);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #movie-title {
