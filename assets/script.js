@@ -53,13 +53,14 @@ async function callWatchMode() {
         var item = response.results[0]
           watchModeID = item.id
         watchModeTitleInfoCall()
+        
       }
   })
 }
 
 async function watchModeTitleInfoCall() {
   const url = (
-    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T'
+    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T&append_to_response=name, web_url'
     );
   const result = await fetch(url)
     .then(response => response.json())
@@ -83,7 +84,8 @@ async function watchModeTitleInfoCall() {
         movieRating.innerHTML = watchModeItem.user_rating
         movieSummary.innerHTML = watchModeItem.plot_overview
         moviePoster.src = watchModeItem.poster
-        movieAvailability.innerHTML = watchModeID.genre
+        movieAvailability.innerHTML = watchModeItem.sources
+         
         //whereToWatch = watchModeItem.sources.name
         //whereToWatchLink= watchModeItem.sources.web_url
         embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/')
@@ -94,6 +96,19 @@ async function watchModeTitleInfoCall() {
 }
 
 //how to watch/stream API call
+/*async function watchModeSourcesCall() {
+  var url = (
+    'https://api.watchmode.com/v1/title/' + watchModeID + '/sources/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T'
+    );
+  var result = await fetch(url)
+    .then(response => response.json())
+    .then(function(response) {
+     watchModeItems = response
+      movieAvailability.innerHTML = watchModeItems.name, website_url
+
+    }
+    )
+  } */
 
 
 //MovieQuote API Call
