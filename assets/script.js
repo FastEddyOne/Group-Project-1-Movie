@@ -27,6 +27,7 @@ $('#search-bar').on('submit', (e) => {e.preventDefault(); return false})
 
 saveSearchHistory()
 
+
 function userInputComplete(e) {
   e.preventDefault()
     userSearch = document.getElementById('search_field').value
@@ -68,7 +69,7 @@ async function callWatchMode() {
 
 async function watchModeTitleInfoCall() {
   const url = (
-    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T&append_to_response=name, web_url'
+    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T&append_to_response=sources=[]'
     );
   const result = await fetch(url)
     .then(response => response.json())
@@ -84,6 +85,7 @@ function updateSearch(watchModeItem) {
   movieRating.innerHTML = watchModeItem.user_rating
   movieSummary.innerHTML = watchModeItem.plot_overview
   moviePoster.src = watchModeItem.poster
+  movieAvailability.innerHTML = watchModeItem.sources
   //whereToWatch = watchModeItem.sources.name
   //whereToWatchLink= watchModeItem.sources.web_url
   embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/')
@@ -97,6 +99,21 @@ function updateSearch(watchModeItem) {
   hideShowInfo()
   saveToCache(userSearch, watchModeItem)
 }
+
+/*function getSourcesAPI() {
+  var requestUrl = 'https://api.watchmode.com/v1/sources/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T';
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      for (var i=0; i < data.length; i++) {
+        movieAvailability.innerHTML = data[i].name;
+
+      }
+    })
+} */
 
 function saveToCache(userSearch, watchModeItem) {
   var cache = localStorage.getItem('cachedMovies')
