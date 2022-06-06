@@ -22,6 +22,10 @@ const movieList = document.getElementById("movie-list")
 //Get User Input
 document.getElementById('search_button').addEventListener('click', userInputComplete)
 document.getElementById('search_field').addEventListener('keyup', (e) => e.target.value=e.target.value.trimStart())
+$('#search-bar').on('submit', (e) => {e.preventDefault(); return false})
+
+
+saveSearchHistory()
 
 function userInputComplete(e) {
   e.preventDefault()
@@ -40,22 +44,26 @@ function userInputComplete(e) {
 /*API Calls*/
 //WatchMode API Calls
 async function callWatchMode() {
-  const url = (
-    'https://api.watchmode.com/v1/autocomplete-search/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T&' +
-    new URLSearchParams({ 
-      search_value: userSearch, 
-      search_type: 1 }).toString()
-  );
-  const result = await fetch(url)
-    .then(response => response.json())
-    .then(function(response) {
-      if (response.results.length > 0) {
-        var item = response.results[0]
-          watchModeID = item.id
-        watchModeTitleInfoCall()
-        
-      }
-  })
+  const movieInfoData = getFromCache(userSearch)
+  if (movieInfoData) {
+    updateSearch(movieInfoData)
+  } else {
+    const url = (
+      'https://api.watchmode.com/v1/autocomplete-search/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T&' +
+      new URLSearchParams({ 
+        search_value: userSearch, 
+        search_type: 1 }).toString()
+    );
+    const result = await fetch(url)
+      .then(response => response.json())
+      .then(function(response) {
+        if (response.results.length > 0) {
+          var item = response.results[0]
+            watchModeID = item.id
+          watchModeTitleInfoCall()
+        }
+    })
+  }
 }
 
 async function watchModeTitleInfoCall() {
@@ -65,51 +73,53 @@ async function watchModeTitleInfoCall() {
   const result = await fetch(url)
     .then(response => response.json())
     .then(function(response) {
-      var watchModeItem = response
-        movieTitle.innerHTML = watchModeItem.title
-        titleMovie.innerHTML = watchModeItem.title
-        movieRating.innerHTML = watchModeItem.user_rating
-        movieSummary.innerHTML = watchModeItem.plot_overview
-        moviePoster.src = watchModeItem.poster
-        //whereToWatch = watchModeItem.sources.name
-        //whereToWatchLink= watchModeItem.sources.web_url
-        embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/')
-
-        if (watchModeItem.trailer == "") {
-          trailerButton.classList.add('hidden')
-        } else {
-          trailerButton.classList.remove('hidden')
-        }
-
-        movieRating.innerHTML = watchModeItem.user_rating
-        movieSummary.innerHTML = watchModeItem.plot_overview
-        moviePoster.src = watchModeItem.poster
-        movieAvailability.innerHTML = watchModeItem.sources
-         
-        //whereToWatch = watchModeItem.sources.name
-        //whereToWatchLink= watchModeItem.sources.web_url
-        embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/')
-        getMovieQuoteCall()
-        hideShowInfo()
+      updateSearch(response)
       }
   )
 }
 
-//how to watch/stream API call
-/*async function watchModeSourcesCall() {
-  var url = (
-    'https://api.watchmode.com/v1/title/' + watchModeID + '/sources/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T'
-    );
-  var result = await fetch(url)
-    .then(response => response.json())
-    .then(function(response) {
-     watchModeItems = response
-      movieAvailability.innerHTML = watchModeItems.name, website_url
+function updateSearch(watchModeItem) {
+  movieTitle.innerHTML = watchModeItem.title
+  titleMovie.innerHTML = watchModeItem.title
+  movieRating.innerHTML = watchModeItem.user_rating
+  movieSummary.innerHTML = watchModeItem.plot_overview
+  moviePoster.src = watchModeItem.poster
+  //whereToWatch = watchModeItem.sources.name
+  //whereToWatchLink= watchModeItem.sources.web_url
+  embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/')
+  
+  if (watchModeItem.trailer == "") {
+    trailerButton.classList.add('hidden')
+  } else {
+    trailerButton.classList.remove('hidden')
+  }
+  getMovieQuoteCall()
+  hideShowInfo()
+  saveToCache(userSearch, watchModeItem)
+}
 
-    }
-    )
-  } */
+function saveToCache(userSearch, watchModeItem) {
+  var cache = localStorage.getItem('cachedMovies')
+  if (cache) {
+    cache = JSON.parse(cache)
+  } else {
+    cache = {}
+  }
+  cache[userSearch.toLowerCase()] = watchModeItem
+  console.log(cache)
+  localStorage.setItem('cachedMovies', JSON.stringify(cache))
+}
 
+function getFromCache(userSearch) {
+  var cache = localStorage.getItem('cachedMovies')
+  if (cache) {
+    cache = JSON.parse(cache)
+  } else {
+    cache = {}
+  }
+  console.log(cache)
+  return cache[userSearch.toLowerCase()]
+}
 
 //MovieQuote API Call
 async function getMovieQuoteCall() {
@@ -169,9 +179,16 @@ function saveSearchHistory() {
 
   movieList.innerHTML = searchHistory
   .map( userSearch => {
-      return `<li class="search-results">${userSearch}<li>`;
+      return `<li class="search-results"><a>${userSearch}</a><li>`;
   })
   .join("");
+
+  $('li a', userSearch).on('click', (e) => {
+    $('#search_field').val(e.target.innerText)
+    userSearch = e.target.innerText
+    callWatchMode()
+    console.log(e.target)
+  })
 
   } 
 
