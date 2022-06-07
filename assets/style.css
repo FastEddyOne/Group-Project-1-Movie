@@ -69,6 +69,10 @@ h2 {
 
 }
 
+#welcome-info p {
+    text-align: center;
+}
+
 .main-info {
     display: flex;
     flex-direction: row;
