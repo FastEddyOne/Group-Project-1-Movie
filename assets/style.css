@@ -103,7 +103,7 @@ h2 {
 
 .quote-box {
     width: 150px;
-    margin-right: 50px;
+    margin-right: 100px;
 }
 
 .quote {
@@ -146,12 +146,12 @@ a:hover {
 }
 
 #network-list {
-   margin-bottom: 300px;
+    margin-bottom: 300px;
 }
 
 .network-availability {
-    width:15em;
-    float:left;
+    width: 15em;
+    float: left;
     padding: 5px;
 }
 
