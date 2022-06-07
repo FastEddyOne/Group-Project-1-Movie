@@ -153,13 +153,15 @@ const options = {
 fetch('https://moviequotes.rocks/api/v1/quotes?movie=' + userSearch, options)
 	.then(quoteResponseItem => quoteResponseItem.json())
   .then(function(quoteResponseItem) {
-      console.log(quoteResponseItem)
+    if(quoteResponseItem.length > 0){
         movieQuote.innerHTML = quoteResponseItem[0].content
         movieQuotePerson.innerHTML = quoteResponseItem[0].character.name
-     
- // .catch(err => console.error(err));
-})
+      }
+      else hideQuoteBox()
+  })
+  .catch(err => console.error(err));
 }
+
 
 function hideQuoteBox() {
   movieQuote.style.visibility = 'hidden'
