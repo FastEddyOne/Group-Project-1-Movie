@@ -18,12 +18,13 @@ var alertButton = document.getElementById('alert-button')
 var searchBar = document.getElementById('search-bar')
 var trailerButton = document.getElementById('trailer-button')
 const movieList = document.getElementById("movie-list")
+var networkList = document.getElementById('network-list')
+var savedTrailer
 
 //Get User Input
 document.getElementById('search_button').addEventListener('click', userInputComplete)
 document.getElementById('search_field').addEventListener('keyup', (e) => e.target.value=e.target.value.trimStart())
 $('#search-bar').on('submit', (e) => {e.preventDefault(); return false})
-
 
 saveSearchHistory()
 
@@ -68,7 +69,7 @@ async function callWatchMode() {
 
 async function watchModeTitleInfoCall() {
   const url = (
-    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T'
+    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T&append_to_response=sources'
     );
   const result = await fetch(url)
     .then(response => response.json())
@@ -84,10 +85,17 @@ function updateSearch(watchModeItem) {
   movieRating.innerHTML = watchModeItem.user_rating
   movieSummary.innerHTML = watchModeItem.plot_overview
   moviePoster.src = watchModeItem.poster
-  //whereToWatch = watchModeItem.sources.name
-  //whereToWatchLink= watchModeItem.sources.web_url
-  embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/')
-  
+
+  networkList.innerHTML = watchModeItem.sources.filter(network => {
+    return network.format === "HD"
+  })
+  .map( network => {
+      return `<li class="network-availability"><a href=${network.web_url}>${network.name}</a></li>`;
+  })
+  .join("");
+
+  savedTrailer = watchModeItem.trailer.replace('watch?v=', 'embed/')
+
   if (watchModeItem.trailer == "") {
     trailerButton.classList.add('hidden')
   } else {
