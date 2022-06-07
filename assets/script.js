@@ -199,5 +199,4 @@ console.log('starting savesearchhistory')
       return `<li class="search-results"><a>${userSearch}</a><li>`;
     })
     .join("");
-
 }
