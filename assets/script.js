@@ -105,7 +105,7 @@ function updateSearch(watchModeItem) {
     return network.format === "HD"
   })
     .map(network => {
-      return `<li class="network-availability"><a href=${network.web_url}>${network.name}</a></li>`;
+      return `<li class="network-availability"><a href=${network.web_url} target="_blank">${network.name}</a></li>`;
     })
     .join("");
 
