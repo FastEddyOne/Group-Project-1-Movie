@@ -118,20 +118,6 @@ function updateSearch(watchModeItem) {
   saveToCache(userSearch, watchModeItem)
 }
 
-/*function getSourcesAPI() {
-  var requestUrl = 'https://api.watchmode.com/v1/sources/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T';
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (sources) {
-      console.log(sources);
-      for (var i=0; i < sources.length; i++) {
-        movieAvailability.innerHTML = sources[i].name;
-
-      }
-    })
-} */
 
 function saveToCache(userSearch, watchModeItem) {
   var cache = localStorage.getItem('cachedMovies')
@@ -184,13 +170,8 @@ function hideShowInfo() {
   apiInfo.classList.remove('hidden');
 }
 
-//Local Storage Stuff
-
-//$(".submit").on("click", function() {
-//     var value = $(this).siblings("#search-list").val();
-//     var searchedMovies= $(this).parent().attr("id");
-//     localStorage.setItem(searchedMovies, value);
-// })
+console.log(quote)
+//Local Storage search history
 
 
 function saveSearchHistory() {
@@ -225,27 +206,4 @@ function saveSearchHistory() {
   } 
 
 
-
-
-
-  /*function handleFormSubmit(event) {
-    event.preventDefault(); 
-    var movieItem = $('input[name="search_filed"]').val();
-    if(!movieItem) {
-      console.log('Nothing entered in search bar');
-      return;
-    }
-    var movieListEl = $('<li>');
-    movieListEl.text(movieItem);
-
-  } */
-  
-  /*$(".submit").on("click", function(){
-    var list = $(this).children("#search_filed").val();
-    var search = $(this).parent().attr("id");
-    localStorage.setItem(search, list);
-      
-  } )
-  
-  $("#search_field #searched-movies").val(localStorage.getItem(".movie-list")); */
 
