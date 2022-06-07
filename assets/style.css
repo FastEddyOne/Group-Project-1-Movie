@@ -140,6 +140,16 @@ a:hover {
     color: var(--mintgreen);
 }
 
+#network-list {
+   margin-bottom: 300px;
+}
+
+.network-availability {
+    width:15em;
+    float:left;
+    padding: 5px;
+}
+
 #movie-quote {
     color: var(--sunflower);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -173,7 +183,7 @@ a:hover {
 footer {
     color: var(--beachtan);
     background-color: var(--mintgreen);
-    position: fixed;
+    /* position: fixed; */
     left: 0px;
     bottom: 0px;
     height: 25px;
