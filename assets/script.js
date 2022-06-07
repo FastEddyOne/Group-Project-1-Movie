@@ -26,6 +26,15 @@ document.getElementById('search_button').addEventListener('click', userInputComp
 document.getElementById('search_field').addEventListener('keyup', (e) => e.target.value=e.target.value.trimStart())
 $('#search-bar').on('submit', (e) => {e.preventDefault(); return false})
 
+$('#trailer-modal').on('open.zf.reveal', (e) => {
+  embeddedTrailer.src = savedTrailer
+  console.log(embeddedTrailer.src)
+})
+$('#trailer-modal').on('closed.zf.reveal', (e) => {
+  embeddedTrailer.src = ""
+  console.log(embeddedTrailer.src)
+})
+
 saveSearchHistory()
 
 function userInputComplete(e) {
