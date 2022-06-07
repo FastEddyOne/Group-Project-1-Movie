@@ -10,6 +10,8 @@ var movieRating = document.getElementById('ratings')
 var movieSummary = document.getElementById('movie-summary')
 var moviePoster = document.getElementById('movie-poster')
 var movieAvailability = document.getElementById('movie-availability')
+var movieAvailabilityUrl = document.getElementById('movie-availabilty-url')
+var networkList = document.getElementById('network-list')
 var embeddedTrailer = document.getElementById('embedded-trailer')
 var welcomeInfo = document.getElementById('welcome-info')
 var apiInfo = document.getElementById('api-info')
@@ -26,6 +28,7 @@ $('#search-bar').on('submit', (e) => {e.preventDefault(); return false})
 
 
 saveSearchHistory()
+
 
 function userInputComplete(e) {
   e.preventDefault()
@@ -68,7 +71,7 @@ async function callWatchMode() {
 
 async function watchModeTitleInfoCall() {
   const url = (
-    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T'
+    'https://api.watchmode.com/v1/title/' + watchModeID + '/details/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T&append_to_response=sources' 
     );
   const result = await fetch(url)
     .then(response => response.json())
@@ -84,6 +87,21 @@ function updateSearch(watchModeItem) {
   movieRating.innerHTML = watchModeItem.user_rating
   movieSummary.innerHTML = watchModeItem.plot_overview
   moviePoster.src = watchModeItem.poster
+
+  
+    networkList.innerHTML = watchModeItem.sources
+    .map( network => {
+      
+       
+        return `<li class="network-availability"><a href=${network.web_url}>${network.name } - ${network.format}</a><li>`;
+    })
+    
+    .join("");
+  //}
+  
+
+    console.log(movieAvailability, movieAvailabilityUrl)
+
   //whereToWatch = watchModeItem.sources.name
   //whereToWatchLink= watchModeItem.sources.web_url
   embeddedTrailer.src = watchModeItem.trailer.replace('watch?v=', 'embed/')
@@ -97,6 +115,21 @@ function updateSearch(watchModeItem) {
   hideShowInfo()
   saveToCache(userSearch, watchModeItem)
 }
+
+/*function getSourcesAPI() {
+  var requestUrl = 'https://api.watchmode.com/v1/sources/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T';
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (sources) {
+      console.log(sources);
+      for (var i=0; i < sources.length; i++) {
+        movieAvailability.innerHTML = sources[i].name;
+
+      }
+    })
+} */
 
 function saveToCache(userSearch, watchModeItem) {
   var cache = localStorage.getItem('cachedMovies')
@@ -160,7 +193,6 @@ function hideShowInfo() {
 //     localStorage.setItem(searchedMovies, value);
 // })
 
-// $("#search-list #searched-Movies").val(localStorage.getItem("search-list"));
 
 function saveSearchHistory() {
 
@@ -194,17 +226,6 @@ function saveSearchHistory() {
   } 
 
 
-  /*function getItems() {
-    searchList = JSON.parse(localStorage.getItem("searchHistory"));
-    if (searchList !== null) {
-        searchHistory = searchList;
-    };
-    for (i = 0; i < searchHistory.length; i++) {
-        if (i == 10) {
-            break;
-        }
-    }
-} */
 
 
 
