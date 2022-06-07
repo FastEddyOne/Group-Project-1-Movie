@@ -37,6 +37,14 @@ $('#trailer-modal').on('closed.zf.reveal', (e) => {
   console.log(embeddedTrailer.src)
 })
 
+$('#movie-list').on('click', (e) => {
+  $('#search_field').val(e.target.innerText)
+  userSearch = e.target.innerText
+  console.log(e.target)
+  callWatchMode()
+})
+
+
 saveSearchHistory()
 
 
@@ -44,14 +52,8 @@ function userInputComplete(e) {
   e.preventDefault()
   userSearch = document.getElementById('search_field').value
   userSearch = userSearch.trim()
-
-  if (userSearch.length > 0) {
-    saveSearchHistory()
-    callWatchMode()
-  }
-  else {
-    return noMovieInput.classList.remove('hidden')
-  }
+  saveSearchHistory()
+  callWatchMode()
 }
 
 /*API Calls*/
@@ -171,12 +173,13 @@ function hideShowInfo() {
   apiInfo.classList.remove('hidden');
 }
 
-console.log(quote)
+// console.log(quote)
 //Local Storage search history
 
 
 function saveSearchHistory() {
 
+console.log('starting savesearchhistory')
 
   if (localStorage["searchHistory"]) {
     searchHistory = JSON.parse(localStorage['searchHistory']);
@@ -197,14 +200,4 @@ function saveSearchHistory() {
     })
     .join("");
 
-  $('li a', userSearch).on('click', (e) => {
-    $('#search_field').val(e.target.innerText)
-    userSearch = e.target.innerText
-    callWatchMode()
-    console.log(e.target)
-  })
-
 }
-
-
-
