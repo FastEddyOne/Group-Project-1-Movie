@@ -32,9 +32,9 @@ Assignment Requirements:
 
 ## Application Screenshots
 
-![Welcome Screen](images/5VMmBq6.png)
-![Search Results](images/MV3GrkU.png)
-![Opened Trailer Modal](images/uB9iSJp.png)
+![Welcome Screen](Images/5VMmBq6.png)
+![Search Results](Images/MV3GrkU.png)
+![Opened Trailer Modal](Images/uB9iSJp.png)
 
 ## Link to Deployed Application
 
