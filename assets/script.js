@@ -179,12 +179,6 @@ fetch('https://moviequotes.rocks/api/v1/quotes?movie=' + userSearch, options)
   .catch(err => console.error(err));
 }
 
-function hideQuoteBox() {
-  movieQuote.style.visibility = 'hidden'
-  movieQuotePerson.style.visibility = 'hidden'
-  document.getElementById('quote-header').style.visibility = 'hidden'
-}
-
 function hideShowInfo() {
   welcomeInfo.classList.add('hidden');
   apiInfo.classList.remove('hidden');
