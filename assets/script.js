@@ -171,7 +171,10 @@ fetch('https://moviequotes.rocks/api/v1/quotes?movie=' + userSearch, options)
         movieQuote.innerHTML = quoteResponseItem[0].content
         movieQuotePerson.innerHTML = quoteResponseItem[0].character.name
       }
-      else hideQuoteBox()
+      else if(quoteResponseItem) {
+        movieQuote.innerHTML = 'This is not the quote you are looking for!'
+        movieQuotePerson.innerHTML = 'Not Obi-Wan'
+      }
   })
   .catch(err => console.error(err));
 }
