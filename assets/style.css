@@ -112,6 +112,7 @@ h2 {
     border-style: solid;
     padding: 15px;
     color: var(--mintgreen);
+    margin-bottom: 25px;
 }
 
 #searched-Movies {
@@ -183,7 +184,7 @@ a:hover {
 footer {
     color: var(--beachtan);
     background-color: var(--mintgreen);
-    /* position: fixed; */
+    position: fixed;
     left: 0px;
     bottom: 0px;
     height: 25px;
