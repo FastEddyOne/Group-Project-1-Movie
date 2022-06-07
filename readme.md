@@ -30,8 +30,13 @@ Assignment Requirements:
 10. In a repository using best practices.
 11. Deployed to live url.
 
-## Link to live
+## Application Screenshots
 
-[View Website](https://edwardmock.github.io/Group-Project-1-Movie/ "View Website")
+![Welcome Screen](images/5VMmBq6.png)
+![Search Results](images/MV3GrkU.png)
+![Opened Trailer Modal](images/uB9iSJp.png)
 
-![alt text](# "Screenshot of Website")
+## Link to Deployed Application
+
+[View Website](https://edwardmock.github.io/Group-Project-1-Movie/)
+
