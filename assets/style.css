@@ -146,12 +146,12 @@ a:hover {
 }
 
 #network-list {
-   margin-bottom: 300px;
+    margin-bottom: 300px;
 }
 
 .network-availability {
-    width:15em;
-    float:left;
+    width: 15em;
+    float: left;
     padding: 5px;
 }
 

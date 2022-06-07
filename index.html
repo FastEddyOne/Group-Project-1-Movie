@@ -1,96 +1,102 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Search</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="icon" type="image/x-icon" href="Images/filmreel.ico">
-  </head>
 
-  <body>
-    <h1>🎥 MovieSearch 🎥</h1>
-    
-    <div class="row both-sides">
-      <div class="left-side">
-        <form data-abide id="search-bar">
-          <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-              <div class="medium-6 cell field-and-button">
-                <label>
-                  <input id="search_field" type="text" required placeholder="Movie/Show Title">
-                </label>
-                <label class="form-error" data-form-error-for="search_field">You must enter in a title!</label>
-                <button id="search_button" type="submit" class="submit success button">Search</button>
-              </div>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Search</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" type="image/x-icon" href="Images/filmreel.ico">
+</head>
+
+<body>
+  <h1>🎥 MovieSearch 🎥</h1>
+
+  <div class="row both-sides">
+    <div class="left-side">
+      <form data-abide id="search-bar">
+        <div class="grid-container">
+          <div class="grid-x grid-padding-x">
+            <div class="medium-6 cell field-and-button">
+              <label>
+                <input id="search_field" type="text" required placeholder="Movie/Show Title">
+              </label>
+              <label class="form-error" data-form-error-for="search_field">You must enter in a title!</label>
+              <button id="search_button" type="submit" class="submit success button">Search</button>
             </div>
           </div>
-        </form>
-
-        <div class="history-quote">
-          <section class="search-history">
-            <h3 id="searched-Movies" class="container">Search History</h3>
-            <div id="search-list">
-              <ul id="movie-list"></ul>
-              <!-- Empty div for local storage list -->
-            </div>
-          </section>
-
-          <section class="quote-box">
-            <div id = "quote-header"></div>
-            <div class="quote">
-              <p id="movie-quote"></p>
-              <div id="movie-quote-person"></div>
-            </div>
-            <!-- If movie quote does not exist, create conditional statement -->
-          </section>
         </div>
-      </div>
+      </form>
 
-      <!-- This is what shows when you load the website, before you put in a movie title -->
-      <div class="right-side" id="welcome-info">
-        <h2>Welcome!</h2>
-        <p>Our website is meant to make your life easier! Just plug in the movie or show you would like to watch, and voila! You will have your movie details and availability!!</p>
-      </div>
-
-      <div class="right-side hidden" id="api-info">
-        <section class="main-info">
-          <div class="movie-info">
-            <h3><span id="movie-title"></span></h3>
-            <p>Ratings: <span id="ratings"></span></p>
-            <p>Summary: <span id="movie-summary"></span></p>
-            <p><button id="trailer-button" class="button" data-open="trailer-modal">Watch trailer</button></p>
+      <div class="history-quote">
+        <section class="search-history">
+          <h3 id="searched-Movies" class="container">Search History</h3>
+          <div id="search-list">
+            <ul id="movie-list"></ul>
+            <!-- Empty div for local storage list -->
           </div>
-          <img id="movie-poster" src="" alt = "Movie Poster Image"></img>
-          <!-- All spans will be pulled directly from Watchmode or other apis -->
         </section>
-        <section class="avail-info">
-          <p>Where to find <span id="title-movie"></span>:</p>
-          <div><span id="movie-availability"></span></div>
-          <ul id="network-list"></ul>
-        </section>
-      </div>
 
-      <!-- Modal pop-up for the trailer -->
-      <div class="reveal" id="trailer-modal" data-reveal>
-        <iframe id="embedded-trailer" src="" frameborder="0" width="560" height="315"></iframe>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <section class="quote-box">
+          <div id="quote-header"></div>
+          <div class="quote">
+            <p id="movie-quote"></p>
+            <div id="movie-quote-person"></div>
+          </div>
+          <!-- If movie quote does not exist, create conditional statement -->
+        </section>
       </div>
     </div>
 
-    <!-- Attribution for Watchmode -->
-    <footer><span>Streaming data powered by Watchmode.com</span></footer>
+    <!-- This is what shows when you load the website, before you put in a movie title -->
+    <div class="right-side" id="welcome-info">
+      <h2>Welcome!</h2>
+      <p>Our website is meant to make your life easier! Just plug in the movie or show you would like to watch, and
+        voila! You will have your movie details and availability!!</p>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.12/what-input.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>    
-    <script>
-      $(document).foundation();
-    </script>
-    <script src="assets/script.js"></script>
-  </body>
+    <div class="right-side hidden" id="api-info">
+      <section class="main-info">
+        <div class="movie-info">
+          <h3><span id="movie-title"></span></h3>
+          <p>Ratings: <span id="ratings"></span></p>
+          <p>Summary: <span id="movie-summary"></span></p>
+          <p><button id="trailer-button" class="button" data-open="trailer-modal">Watch trailer</button></p>
+        </div>
+        <img id="movie-poster" src="" alt="Movie Poster Image"></img>
+        <!-- All spans will be pulled directly from Watchmode or other apis -->
+      </section>
+      <section class="avail-info">
+        <p>Where to find <span id="title-movie"></span>:</p>
+        <div><span id="movie-availability"></span></div>
+        <ul id="network-list"></ul>
+      </section>
+    </div>
+
+    <!-- Modal pop-up for the trailer -->
+    <div class="reveal" id="trailer-modal" data-reveal>
+      <iframe id="embedded-trailer" src="" frameborder="0" width="560" height="315"></iframe>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Attribution for Watchmode -->
+  <footer><span>Streaming data powered by Watchmode.com</span></footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.12/what-input.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"
+    crossorigin="anonymous"></script>
+  <script>
+    $(document).foundation();
+  </script>
+  <script src="assets/script.js"></script>
+</body>
+
 </html>
