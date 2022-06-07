@@ -171,7 +171,6 @@ function hideShowInfo() {
   apiInfo.classList.remove('hidden');
 }
 
-console.log(quote)
 //Local Storage search history
 
 
