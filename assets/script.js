@@ -10,6 +10,8 @@ var movieRating = document.getElementById('ratings')
 var movieSummary = document.getElementById('movie-summary')
 var moviePoster = document.getElementById('movie-poster')
 var movieAvailability = document.getElementById('movie-availability')
+var movieAvailabilityUrl = document.getElementById('movie-availabilty-url')
+var networkList = document.getElementById('network-list')
 var embeddedTrailer = document.getElementById('embedded-trailer')
 var welcomeInfo = document.getElementById('welcome-info')
 var apiInfo = document.getElementById('api-info')
@@ -36,6 +38,7 @@ $('#trailer-modal').on('closed.zf.reveal', (e) => {
 })
 
 saveSearchHistory()
+
 
 function userInputComplete(e) {
   e.preventDefault()
@@ -115,6 +118,21 @@ function updateSearch(watchModeItem) {
   saveToCache(userSearch, watchModeItem)
 }
 
+/*function getSourcesAPI() {
+  var requestUrl = 'https://api.watchmode.com/v1/sources/?apiKey=41QN8oF7JAPUWkq9b0E7Cryxq3hozhGm3Mmr8j6T';
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (sources) {
+      console.log(sources);
+      for (var i=0; i < sources.length; i++) {
+        movieAvailability.innerHTML = sources[i].name;
+
+      }
+    })
+} */
+
 function saveToCache(userSearch, watchModeItem) {
   var cache = localStorage.getItem('cachedMovies')
   if (cache) {
@@ -177,7 +195,6 @@ function hideShowInfo() {
 //     localStorage.setItem(searchedMovies, value);
 // })
 
-// $("#search-list #searched-Movies").val(localStorage.getItem("search-list"));
 
 function saveSearchHistory() {
 
@@ -211,17 +228,6 @@ function saveSearchHistory() {
   } 
 
 
-  /*function getItems() {
-    searchList = JSON.parse(localStorage.getItem("searchHistory"));
-    if (searchList !== null) {
-        searchHistory = searchList;
-    };
-    for (i = 0; i < searchHistory.length; i++) {
-        if (i == 10) {
-            break;
-        }
-    }
-} */
 
 
 
